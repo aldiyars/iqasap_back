@@ -1,0 +1,91 @@
+<!--<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"-->
+<!--                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"-->
+<!--                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-->
+<!--                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">-->
+<!--&lt;!&ndash;    <changeSet id="1.0.0" author="aldiyar">&ndash;&gt;-->
+<!--&lt;!&ndash;        <createTable tableName="users">&ndash;&gt;-->
+<!--&lt;!&ndash;            <column name="id" type="BIGINT" autoIncrement="true">&ndash;&gt;-->
+<!--&lt;!&ndash;                <constraints primaryKey="true" nullable="false"/>&ndash;&gt;-->
+<!--&lt;!&ndash;            </column>&ndash;&gt;-->
+
+<!--&lt;!&ndash;            <column name="first_name" type="VARCHAR(100)">&ndash;&gt;-->
+<!--&lt;!&ndash;                <constraints unique="false"/>&ndash;&gt;-->
+<!--&lt;!&ndash;            </column>&ndash;&gt;-->
+
+<!--&lt;!&ndash;            <column name="last_name" type="VARCHAR(100)">&ndash;&gt;-->
+<!--&lt;!&ndash;                <constraints unique="false" />&ndash;&gt;-->
+<!--&lt;!&ndash;            </column>&ndash;&gt;-->
+
+<!--&lt;!&ndash;            <column name="email" type="VARCHAR(100)">&ndash;&gt;-->
+<!--&lt;!&ndash;                <constraints unique="true" nullable="false"/>&ndash;&gt;-->
+<!--&lt;!&ndash;            </column>&ndash;&gt;-->
+
+<!--&lt;!&ndash;            <column name="password" type="VARCHAR(100)">&ndash;&gt;-->
+<!--&lt;!&ndash;                <constraints nullable="false"/>&ndash;&gt;-->
+<!--&lt;!&ndash;            </column>&ndash;&gt;-->
+
+<!--&lt;!&ndash;            <column name="password" type="VARCHAR(100)">&ndash;&gt;-->
+<!--&lt;!&ndash;                <constraints nullable="false" unique="true"/>&ndash;&gt;-->
+<!--&lt;!&ndash;            </column>&ndash;&gt;-->
+
+<!--&lt;!&ndash;            <column name="address" type="VARCHAR(255)">&ndash;&gt;-->
+<!--&lt;!&ndash;                <constraints unique="false" />&ndash;&gt;-->
+<!--&lt;!&ndash;            </column>&ndash;&gt;-->
+
+<!--&lt;!&ndash;            <column name="image_url" type="VARCHAR(255)">&ndash;&gt;-->
+<!--&lt;!&ndash;                <constraints unique="false" />&ndash;&gt;-->
+<!--&lt;!&ndash;            </column>&ndash;&gt;-->
+
+<!--&lt;!&ndash;            <column name="lat" type="VARCHAR(100)">&ndash;&gt;-->
+<!--&lt;!&ndash;                <constraints unique="false" />&ndash;&gt;-->
+<!--&lt;!&ndash;            </column>&ndash;&gt;-->
+
+<!--&lt;!&ndash;            <column name="lng" type="VARCHAR(100)">&ndash;&gt;-->
+<!--&lt;!&ndash;                <constraints unique="false" />&ndash;&gt;-->
+<!--&lt;!&ndash;            </column>&ndash;&gt;-->
+
+<!--&lt;!&ndash;            <column name="status" type="INT(20)">&ndash;&gt;-->
+<!--&lt;!&ndash;                <constraints nullable="false"/>&ndash;&gt;-->
+<!--&lt;!&ndash;            </column>&ndash;&gt;-->
+
+<!--&lt;!&ndash;            <column name="created_at" type="TIMESTAMP" defaultValue="CURRENT_TIMESTAMP">&ndash;&gt;-->
+<!--&lt;!&ndash;                <constraints nullable="false"/>&ndash;&gt;-->
+<!--&lt;!&ndash;            </column>&ndash;&gt;-->
+<!--&lt;!&ndash;        </createTable>&ndash;&gt;-->
+
+
+<!--&lt;!&ndash;&lt;!&ndash;        @ManyToMany(fetch = FetchType.EAGER)&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;        private Set<Roles> roles;&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;    </changeSet>&ndash;&gt;-->
+
+<!--&lt;!&ndash;    <changeSet id="1.0.1" author="aldiyar">&ndash;&gt;-->
+<!--&lt;!&ndash;        <createTable tableName="roles">&ndash;&gt;-->
+<!--&lt;!&ndash;            <column name="id" type="BIGINT" autoIncrement="true">&ndash;&gt;-->
+<!--&lt;!&ndash;                <constraints primaryKey="true" nullable="false"/>&ndash;&gt;-->
+<!--&lt;!&ndash;            </column>&ndash;&gt;-->
+
+<!--&lt;!&ndash;            <column name="name" type="VARCHAR(100)">&ndash;&gt;-->
+<!--&lt;!&ndash;                <constraints unique="false"/>&ndash;&gt;-->
+<!--&lt;!&ndash;            </column>&ndash;&gt;-->
+
+<!--&lt;!&ndash;            <column name="created_at" type="TIMESTAMP" defaultValue="CURRENT_TIMESTAMP">&ndash;&gt;-->
+<!--&lt;!&ndash;                <constraints nullable="false"/>&ndash;&gt;-->
+<!--&lt;!&ndash;            </column>&ndash;&gt;-->
+<!--&lt;!&ndash;        </createTable>&ndash;&gt;-->
+<!--&lt;!&ndash;    </changeSet>&ndash;&gt;-->
+
+<!--&lt;!&ndash;    <changeSet id="1.0.2" author="aldiyar">&ndash;&gt;-->
+<!--&lt;!&ndash;        <createTable tableName="users_id">&ndash;&gt;-->
+<!--&lt;!&ndash;            <column name=""&ndash;&gt;-->
+<!--&lt;!&ndash;        </createTable>&ndash;&gt;-->
+<!--&lt;!&ndash;    </changeSet>&ndash;&gt;-->
+
+<!--    <changeSet id="1.0.0" author="aldiyar.sakhan">-->
+<!--        <insert tableName="roles">-->
+<!--            <column name="name" value="ROLE_USER"></column>-->
+<!--        </insert>-->
+<!--        <insert tableName="roles">-->
+<!--            <column name="name" value="ROLE_ADMIN"></column>-->
+<!--        </insert>-->
+<!--    </changeSet>-->
+<!--</databaseChangeLog>-->

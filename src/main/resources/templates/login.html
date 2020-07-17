@@ -1,0 +1,44 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layouts/main.html">
+<div layout:fragment="contentPart">
+    <div class="container d-flex justify-content-center">
+        <div class="row">
+            <div class="col-md-12 ">
+                <div class="card mx-auto my-5 ">
+                    <div class="card-body px-5 py-4">
+                        <h3 class="card-title text-left mb-3">Авторизация</h3>
+                        <form th:action="@{/signin}" method="post">
+                            <div th:if="${param.error}">
+                                <div class="alert alert-danger">Invalid username or password.
+                                </div>
+                            </div>
+                            <div th:if="${param.logout}">
+                                <div class="alert alert-info">You have been logged out.</div>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control p_input" name="email" placeholder="Логин">
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control p_input" name="password"
+                                       placeholder="Пароль">
+                            </div>
+                            <div class="form-group d-flex align-items-center justify-content-between">
+                                <div class="form-check mr-3"><label><input type="checkbox" class="form-check-input">Запомнить
+                                    меня</label></div>
+<!--                                <a href="/registration" class="forgot-pass">Регистрация</a>-->
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary btn-block enter-btn">ВОЙТИ</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</html>

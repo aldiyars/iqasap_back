@@ -1,0 +1,59 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layouts/main.html">
+<div layout:fragment = "contentPart">
+
+    <form th:action = "@{/cms/createCategory}" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label>Name</label>
+            <input type="text" class="form-control" name = "name" required>
+        </div>
+        <label>Иконка для категория</label>
+        <input type="file" class="form-control" name = "file">
+        <button type="submit" class="btn btn-primary">ADD</button>
+    </form>
+    <br>
+    <table cellpadding="20" class="table table-bordered table-hover">
+        <thead class="thead-light">
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                Name
+            </th>
+<!--            <th>-->
+<!--                Icon-->
+<!--            </th>-->
+<!--            <th>-->
+<!--                Удалить-->
+<!--            </th>-->
+<!--            <th>-->
+<!--                Изменить-->
+<!--            </th>-->
+        </tr>
+        </thead>
+        <tbody>
+<!--        <tr th:each = "c:${roles}">-->
+<!--            <td th:text = "${c.id}"></td>-->
+<!--            <td th: = "${c.role}"></td>-->
+<!--&lt;!&ndash;            <td>&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;               <img th:src="/Users/aldiyarsakhan/Desktop/Projects/web_app/meat_house_app/meathouse/uploads/c3bca9ac-d30c-400d-9efd-abbde0a6cf8c.png">&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;            </td>&ndash;&gt;-->
+<!--&lt;!&ndash;            <td >&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                <div class="col">&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                    <a class="button btn-primary btn-sm" th:href = "@{'/details/' + ${editblog.id}}"><i class="fa fa-reply"></i> Отмена</a>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                </div>&ndash;&gt;gf&ndash;&gt;-->
+<!--&lt;!&ndash;            </td>&ndash;&gt;-->
+<!--&lt;!&ndash;            <td>fg&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                    th:text = "${c.iconUrl}"&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;            </td>&ndash;&gt;-->
+<!--        </tr>-->
+        </tbody>
+    </table>
+
+</div>
+
+</html>
