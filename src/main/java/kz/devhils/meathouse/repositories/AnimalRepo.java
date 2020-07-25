@@ -1,6 +1,6 @@
 package kz.devhils.meathouse.repositories;
 
-import kz.devhils.meathouse.model.Animal;
+import kz.devhils.meathouse.model.entities.Animal;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface AnimalRepo extends JpaRepository<Animal, Long> {

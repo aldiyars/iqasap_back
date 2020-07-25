@@ -1,7 +1,7 @@
 package kz.devhils.meathouse.service;
 
-import kz.devhils.meathouse.model.UserProfile;
-import kz.devhils.meathouse.model.Users;
+import kz.devhils.meathouse.model.entities.UserProfile;
+import kz.devhils.meathouse.model.entities.Users;
 
 import java.util.List;
 

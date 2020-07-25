@@ -1,8 +1,8 @@
 package kz.devhils.meathouse.rest;
 
-import kz.devhils.meathouse.dto.AuthenticationRequestDto;
-import kz.devhils.meathouse.model.Users;
-import kz.devhils.meathouse.security.jwt.JwtTokenProvider;
+import kz.devhils.meathouse.model.dtos.AuthenticationRequestDto;
+import kz.devhils.meathouse.model.entities.Users;
+import kz.devhils.meathouse.shared.security.jwt.JwtTokenProvider;
 import kz.devhils.meathouse.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;

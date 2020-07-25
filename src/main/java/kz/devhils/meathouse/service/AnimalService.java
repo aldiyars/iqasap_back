@@ -1,34 +1,42 @@
 package kz.devhils.meathouse.service;
 
-import kz.devhils.meathouse.model.Animal;
-import kz.devhils.meathouse.model.AnimalProfile;
-import kz.devhils.meathouse.model.Statuses;
+import kz.devhils.meathouse.model.entities.Animal;
+import kz.devhils.meathouse.model.entities.AnimalProfile;
+import kz.devhils.meathouse.model.entities.Statuses;
 
 import java.util.List;
 
 public interface AnimalService {
 
-    Animal animalRegister(Animal animal);
+    Animal saveAnimal(Animal animal);
 
     List<Animal> getAnimals();
 
     Animal findById(Long id);
 
-    Animal animalUpdate(Animal animal);
+    Animal updateAnimal(Animal animal);
 
-    void animalDelete(Long id);
+    void deleteAnimalById(Long id);
 
-    List<AnimalProfile> getAll();
+    void deleteAnimal(Animal animal);
 
-    AnimalProfile animalProfileRegister(AnimalProfile animalProfile);
+    //Children
 
-    AnimalProfile getOne(Long id);
 
-    AnimalProfile updateAnimalProfile(AnimalProfile animalProfile);
+    List<AnimalProfile> getAllProfiles();
 
-    AnimalProfile setStatus(Statuses status);
+    List<AnimalProfile> getAllByAnimalId(Long id);
 
-    void animalProfileDelete(Long id);
+    AnimalProfile saveProfile(AnimalProfile animalProfile);
 
+    AnimalProfile getProfileById(Long id);
+
+    AnimalProfile updateProfile(AnimalProfile animalProfile);
+
+    AnimalProfile updateStatus(AnimalProfile animalProfile, Statuses status);
+
+    void deleteByIdProfile(Long id);
+
+    void deleteProfile(AnimalProfile profile);
 
 }

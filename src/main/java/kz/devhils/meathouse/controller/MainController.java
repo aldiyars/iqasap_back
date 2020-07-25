@@ -1,7 +1,7 @@
 package kz.devhils.meathouse.controller;
 
-import kz.devhils.meathouse.model.Users;
-import kz.devhils.meathouse.repositories.UserRepository;
+import kz.devhils.meathouse.model.entities.Users;
+import kz.devhils.meathouse.repositories.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Controller;
 public class MainController {
 
     @Autowired
-    UserRepository userRepository;
+    UserRepo userRepo;
 
 //    @GetMapping(path = "/cms")
 //    public String cms(Model model){
@@ -26,7 +26,7 @@ public class MainController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if(!(authentication instanceof AnonymousAuthenticationToken)){
             User secUser = (User)authentication.getPrincipal();
-            userData = userRepository.findByEmail(secUser.getUsername());
+            userData = userRepo.findByEmail(secUser.getUsername());
         }
         return userData;
     }
