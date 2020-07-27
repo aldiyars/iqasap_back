@@ -16,9 +16,15 @@ public interface UserService {
 
     Users findById(Long id);
 
+    Users updateUser(Users user);
+
     void delete(Long id);
+
+    void delete(Users user);
 
     UserProfile registerProfile(UserProfile userProfile);
 
     void deleteUserProfile(Long id);
+
+
 }

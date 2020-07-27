@@ -1,6 +1,5 @@
 package kz.devhils.meathouse.service.impl;
 
-import javassist.NotFoundException;
 import kz.devhils.meathouse.model.entities.Animal;
 import kz.devhils.meathouse.model.entities.AnimalProfile;
 import kz.devhils.meathouse.model.entities.Statuses;

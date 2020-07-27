@@ -20,8 +20,8 @@ public interface AnimalService {
 
     void deleteAnimal(Animal animal);
 
-    //Children
 
+    //Children
 
     List<AnimalProfile> getAllProfiles();
 

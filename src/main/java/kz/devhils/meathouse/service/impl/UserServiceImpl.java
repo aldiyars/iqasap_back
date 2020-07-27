@@ -78,8 +78,23 @@ public class UserServiceImpl  implements UserService {
     }
 
     @Override
+    public Users updateUser(Users user) {
+        if(user.getId() != null && userRepo.findById(user.getId()).orElse(null) != null){
+            userRepo.save(user);
+            log.info("IN updated - user with user: {} successfully updated");
+        }
+        return user;
+    }
+
+    @Override
     public void delete(Long id) {
         userRepo.deleteById(id);
         log.info("IN delete - user with id: {} successfully deleted");
+    }
+
+    @Override
+    public void delete(Users user) {
+        userRepo.delete(user);
+        log.info("IN delete - user with user: {} successfully deleted");
     }
 }
