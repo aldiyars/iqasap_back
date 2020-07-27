@@ -26,7 +26,7 @@ public class Order {
     private Users moderator;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    private PaymentTypes paymentType;
+    private PaymentType paymentType;
 
     @Column(name = "is_payed")
     private int isPayed;
@@ -40,7 +40,7 @@ public class Order {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at", nullable = false, updatable = false)
     @CreatedDate
-    private Date createdAt;
+    private Date createdAt = new Date();
 
     @PrePersist
     public void prePersist(){

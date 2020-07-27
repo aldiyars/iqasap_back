@@ -1,14 +1,12 @@
-package kz.devhils.meathouse.rest;
+package kz.devhils.meathouse.controller.rest;
 
 
 import kz.devhils.meathouse.model.dtos.AdminUserDto;
 import kz.devhils.meathouse.model.dtos.CreateUserDto;
-import kz.devhils.meathouse.model.dtos.UpdateUserDto;
 import kz.devhils.meathouse.model.entities.UserProfile;
 import kz.devhils.meathouse.model.entities.Users;
 import kz.devhils.meathouse.service.UserService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/api/v1/admin/user")
 @AllArgsConstructor
-public class AdminRestControllerV1 {
+public class AdminRestController {
 
     private UserService userService;
 

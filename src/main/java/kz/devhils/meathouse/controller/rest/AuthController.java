@@ -1,4 +1,4 @@
-package kz.devhils.meathouse.rest;
+package kz.devhils.meathouse.controller.rest;
 
 import kz.devhils.meathouse.model.dtos.AuthenticationRequestDto;
 import kz.devhils.meathouse.model.entities.Users;
@@ -20,13 +20,13 @@ import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/api/v1/auth/")
-public class AuthControllerV1 {
+public class AuthController {
 
     private final AuthenticationManager authenticationManager;
     private final JwtTokenProvider jwtTokenProvider;
     private final UserService userService;
 
-    public AuthControllerV1(AuthenticationManager authenticationManager, JwtTokenProvider jwtTokenProvider, UserService userService) {
+    public AuthController(AuthenticationManager authenticationManager, JwtTokenProvider jwtTokenProvider, UserService userService) {
         this.authenticationManager = authenticationManager;
         this.jwtTokenProvider = jwtTokenProvider;
         this.userService = userService;

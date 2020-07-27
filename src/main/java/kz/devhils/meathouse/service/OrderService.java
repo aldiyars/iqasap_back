@@ -5,7 +5,7 @@ import kz.devhils.meathouse.model.entities.Statuses;
 
 import java.util.List;
 
-public interface OrderServices {
+public interface OrderService {
 
     Order saveOrder(Order order);
     Order findOrderById(Long id);

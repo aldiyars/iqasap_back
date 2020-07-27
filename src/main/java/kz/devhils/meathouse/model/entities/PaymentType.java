@@ -13,7 +13,7 @@ import java.util.Date;
 @NoArgsConstructor
 @Table(name = "payment_types")
 @Entity
-public class PaymentTypes {
+public class PaymentType {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,7 +29,7 @@ public class PaymentTypes {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at", nullable = false, updatable = false)
     @CreatedDate
-    private Date createdAt;
+    private Date createdAt = new Date();
 
     @PrePersist
     public void prePersist(){

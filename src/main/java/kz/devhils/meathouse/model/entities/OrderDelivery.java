@@ -27,7 +27,7 @@ public class OrderDelivery {
     private Order order;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    private PaymentTypes paymentType;
+    private PaymentType paymentType;
 
     @Column(name = "start_date")
     private Date startDate;

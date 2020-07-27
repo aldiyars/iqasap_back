@@ -3,7 +3,7 @@ package kz.devhils.meathouse.service.impl;
 import kz.devhils.meathouse.model.entities.Order;
 import kz.devhils.meathouse.model.entities.Statuses;
 import kz.devhils.meathouse.repositories.OrderRepo;
-import kz.devhils.meathouse.service.OrderServices;
+import kz.devhils.meathouse.service.OrderService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +11,7 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
-public class OrderServicesImpl implements OrderServices {
+public class OrderServiceImpl implements OrderService {
 
     private OrderRepo orderRepo;
 
@@ -56,8 +56,8 @@ public class OrderServicesImpl implements OrderServices {
     @Override
     public Order updateStatusById(Long id, Statuses statuses) {
         Order order = orderRepo.getOne(id);
-
-
-        return null;
+        order.setStatus(statuses);
+        orderRepo.save(order);
+        return order;
     }
 }

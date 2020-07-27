@@ -27,7 +27,7 @@ public class Roles{
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at", nullable = false, updatable = false)
     @CreatedDate
-    private Date createdAt;
+    private Date createdAt = new Date();
 
     @PrePersist
     public void prePersist(){

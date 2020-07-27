@@ -1,4 +1,4 @@
-package kz.devhils.meathouse.rest;
+package kz.devhils.meathouse.controller.rest;
 
 
 import io.swagger.annotations.ApiOperation;
