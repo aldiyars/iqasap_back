@@ -32,4 +32,14 @@ public class Services {
     public void prePersist(){
         this.createdAt = new Date();
     }
+
+//    active
+//    inactive
+//    in_process
+//    pending
+//    delivery
+//    done
+//    in_sale
+//    sold
+
 }
