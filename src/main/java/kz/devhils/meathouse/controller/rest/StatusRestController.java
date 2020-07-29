@@ -31,6 +31,7 @@ public class StatusRestController {
 
     @PostMapping()
     public ResponseEntity<?> addStatus(@RequestBody Statuses status){
+        status.setId(null);
         Statuses result = statusService.addStatus(status);
         return new ResponseEntity<>(result, HttpStatus.CREATED);
     }
