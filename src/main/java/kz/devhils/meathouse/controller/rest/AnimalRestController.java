@@ -100,27 +100,27 @@ public class AnimalRestController {
         AnimalProfile result = animalService.getProfileById(id);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
-
-    @PostMapping("child")
-    @ApiOperation("Создание AnimalProfile")
-    //    @PreAuthorize("HasRole('ROLE_ADMIN')")
-    public ResponseEntity<AnimalProfile> addProfile(@RequestBody AnimalProfileDto animalProfile){
-        AnimalProfile result = animalService.saveProfile(toAnimalProfile(animalProfile));
-        return new ResponseEntity<>(result, HttpStatus.CREATED);
-    }
-
-    public AnimalProfile toAnimalProfile(AnimalProfileDto animalProfileDto){
-        AnimalProfile profile = new AnimalProfile();
-        Animal animal = animalService.findById(animalProfileDto.getAnimalId());
-        profile.setAnimal(animal);
-        profile.setAge(animalProfileDto.getAge());
-        profile.setColor(animalProfileDto.getColor());
-        profile.setWeight(animalProfileDto.getWeight());
-        profile.setBreed(animalProfileDto.getBreed());
-        profile.setGender(animalProfileDto.getGender());
-        profile.setCost(animalProfileDto.getCost());
-        return profile;
-    }
+//
+//    @PostMapping("child")
+//    @ApiOperation("Создание AnimalProfile")
+//    //    @PreAuthorize("HasRole('ROLE_ADMIN')")
+//    public ResponseEntity<AnimalProfile> addProfile(@RequestBody AnimalProfileDto animalProfile){
+//        AnimalProfile result = animalService.saveProfile(toAnimalProfile(animalProfile));
+//        return new ResponseEntity<>(result, HttpStatus.CREATED);
+//    }
+//
+//    public AnimalProfile toAnimalProfile(AnimalProfileDto animalProfileDto){
+//        AnimalProfile profile = new AnimalProfile();
+//        Animal animal = animalService.findById(animalProfileDto.getAnimalId());
+//        profile.setAnimal(animal);
+//        profile.setAge(animalProfileDto.getAge());
+//        profile.setColor(animalProfileDto.getColor());
+//        profile.setWeight(animalProfileDto.getWeight());
+//        profile.setBreed(animalProfileDto.getBreed());
+//        profile.setGender(animalProfileDto.getGender());
+//        profile.setCost(animalProfileDto.getCost());
+//        return profile;
+//    }
 
     @RequestMapping(value = "child", method = RequestMethod.PUT)
     @ApiOperation("Обновить AnimalProfile")
