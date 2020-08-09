@@ -5,7 +5,9 @@ import kz.devhils.meathouse.model.entities.AnimalProfile;
 import kz.devhils.meathouse.model.entities.Statuses;
 import kz.devhils.meathouse.repositories.AnimalProfileRepo;
 import kz.devhils.meathouse.repositories.AnimalRepo;
+import kz.devhils.meathouse.repositories.StatusRepo;
 import kz.devhils.meathouse.service.AnimalService;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -13,15 +15,12 @@ import java.util.List;
 
 @Service
 @Slf4j
+@AllArgsConstructor
 public class AnimalServiceImpl implements AnimalService {
 
     private final AnimalRepo animalRepo;
     private final AnimalProfileRepo animalProfileRepo;
-
-    public AnimalServiceImpl(AnimalRepo animalRepo, AnimalProfileRepo animalProfileRepo) {
-        this.animalRepo = animalRepo;
-        this.animalProfileRepo = animalProfileRepo;
-    }
+    private final StatusRepo statusRepo;
 
     @Override
     public Animal saveAnimal(Animal animal) {
@@ -39,7 +38,7 @@ public class AnimalServiceImpl implements AnimalService {
 
     @Override
     public Animal findById(Long id) {
-        Animal result = animalRepo.getOne(id);
+        Animal result = animalRepo.findById(id).orElse(null);
         return result;
     }
 
@@ -75,6 +74,8 @@ public class AnimalServiceImpl implements AnimalService {
 
     @Override
     public AnimalProfile saveProfile(AnimalProfile animalProfile) {
+        Statuses statuses = statusRepo.findByName("active");
+        animalProfile.setStatuses(statuses);
         AnimalProfile result = animalProfileRepo.save(animalProfile);
         return result;
     }

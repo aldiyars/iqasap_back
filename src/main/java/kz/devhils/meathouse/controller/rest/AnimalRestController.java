@@ -2,9 +2,11 @@ package kz.devhils.meathouse.controller.rest;
 
 
 import io.swagger.annotations.ApiOperation;
+import kz.devhils.meathouse.model.dtos.AnimalProfileDto;
 import kz.devhils.meathouse.model.entities.Animal;
 import kz.devhils.meathouse.model.entities.AnimalProfile;
 import kz.devhils.meathouse.model.entities.Statuses;
+import kz.devhils.meathouse.model.mapper.AnimalProfileMapper;
 import kz.devhils.meathouse.service.AnimalService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -102,9 +104,22 @@ public class AnimalRestController {
     @PostMapping("child")
     @ApiOperation("Создание AnimalProfile")
     //    @PreAuthorize("HasRole('ROLE_ADMIN')")
-    public ResponseEntity<?> addProfile(@RequestBody AnimalProfile animalProfile){
-        AnimalProfile result = animalService.saveProfile(animalProfile);
+    public ResponseEntity<AnimalProfile> addProfile(@RequestBody AnimalProfileDto animalProfile){
+        AnimalProfile result = animalService.saveProfile(toAnimalProfile(animalProfile));
         return new ResponseEntity<>(result, HttpStatus.CREATED);
+    }
+
+    public AnimalProfile toAnimalProfile(AnimalProfileDto animalProfileDto){
+        AnimalProfile profile = new AnimalProfile();
+        Animal animal = animalService.findById(animalProfileDto.getAnimalId());
+        profile.setAnimal(animal);
+        profile.setAge(animalProfileDto.getAge());
+        profile.setColor(animalProfileDto.getColor());
+        profile.setWeight(animalProfileDto.getWeight());
+        profile.setBreed(animalProfileDto.getBreed());
+        profile.setGender(animalProfileDto.getGender());
+        profile.setCost(animalProfileDto.getCost());
+        return profile;
     }
 
     @RequestMapping(value = "child", method = RequestMethod.PUT)
