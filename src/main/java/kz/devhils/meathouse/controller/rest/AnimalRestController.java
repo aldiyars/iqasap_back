@@ -6,7 +6,6 @@ import kz.devhils.meathouse.model.dtos.AnimalProfileDto;
 import kz.devhils.meathouse.model.entities.Animal;
 import kz.devhils.meathouse.model.entities.AnimalProfile;
 import kz.devhils.meathouse.model.entities.Statuses;
-import kz.devhils.meathouse.model.mapper.AnimalProfileMapper;
 import kz.devhils.meathouse.service.AnimalService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
