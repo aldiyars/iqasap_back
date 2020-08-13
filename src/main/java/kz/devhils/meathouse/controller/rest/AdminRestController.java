@@ -69,7 +69,6 @@ public class AdminRestController {
         UserProfile newProfile = new UserProfile();
 
         newProfile.setAddress(user.getAddress());
-        newProfile.setTel((user.getTel()));
         newProfile.setImgUrl(user.getImgUrl());
         newProfile.setLat(user.getLat());
         newProfile.setLng(user.getLng());
@@ -77,6 +76,7 @@ public class AdminRestController {
         UserProfile userProfile = userService.registerProfile(newProfile);
 
         Users newUser = new Users();
+        newUser.setTel(user.getTel());
         newUser.setFirstName(user.getFirstName());
         newUser.setLastName(user.getLastName());
         newUser.setPassword(user.getPassword());

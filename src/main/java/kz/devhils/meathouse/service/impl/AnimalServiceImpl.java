@@ -25,7 +25,6 @@ public class AnimalServiceImpl implements AnimalService {
     @Override
     public Animal saveAnimal(Animal animal) {
         Animal result = animalRepo.save(animal);
-
         log.info("IN register = animal: {} successfully registered", result);
         return result;
     }

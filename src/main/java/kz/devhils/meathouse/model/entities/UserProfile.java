@@ -18,9 +18,6 @@ public class UserProfile {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "tel")
-    private int tel;
-
     @Column(name = "address")
     private String address;
 

@@ -26,5 +26,7 @@ public interface UserService {
 
     void deleteUserProfile(Long id);
 
+    Users authMobile(Users users);
 
+    Users findByTel(Long tel);
 }

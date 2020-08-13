@@ -53,6 +53,23 @@ public class UserServiceImpl  implements UserService {
     }
 
     @Override
+    public Users authMobile(Users users) {
+        Roles role = roleRepo.findByName("ROLE_USER");
+        List<Roles> uRoles = new ArrayList<>();
+        uRoles.add(role);
+        users.setPassword(bCryptPasswordEncoder.encode(users.getPassword()));
+        users.setRoles(uRoles);
+        Users result = userRepo.save(users);
+
+        return result;
+    }
+
+    @Override
+    public Users findByTel(Long tel) {
+        return userRepo.findByTel(tel);
+    }
+
+    @Override
     public List<Users> getAll() {
         List<Users> result = userRepo.findAll();
         log.info("IN getAll - {} users found", result.size());

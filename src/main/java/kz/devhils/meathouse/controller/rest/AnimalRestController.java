@@ -6,6 +6,9 @@ import kz.devhils.meathouse.model.dtos.AnimalProfileDto;
 import kz.devhils.meathouse.model.entities.Animal;
 import kz.devhils.meathouse.model.entities.AnimalProfile;
 import kz.devhils.meathouse.model.entities.Statuses;
+import kz.devhils.meathouse.model.mappers.AnimalPrMapper;
+import kz.devhils.meathouse.model.mappers.AnimalProfileMapper;
+import kz.devhils.meathouse.model.request.AnimalProfileReq;
 import kz.devhils.meathouse.service.AnimalService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -20,6 +23,7 @@ import java.util.List;
 public class AnimalRestController {
 
     private AnimalService animalService;
+    private AnimalPrMapper animalPrMapper;
 
     @GetMapping()
     @ApiOperation("Список всех Animal")
@@ -71,11 +75,11 @@ public class AnimalRestController {
         return new ResponseEntity<>("Deleted by ID:", HttpStatus.OK);
     }
 
-    //Children
+    //Children || AnimalProfile
 
     @GetMapping("children")
     @ApiOperation("Получение список всех AnimalProfiles")
-    public ResponseEntity<AnimalProfile> findAllAnimalProfile(){
+    public ResponseEntity<?> findAllAnimalProfile(){
         List<AnimalProfile> animalProfiles = animalService.getAllProfiles();
         return new ResponseEntity(animalProfiles, HttpStatus.OK);
     }
@@ -103,10 +107,11 @@ public class AnimalRestController {
     @PostMapping("child")
     @ApiOperation("Создание AnimalProfile")
     //    @PreAuthorize("HasRole('ROLE_ADMIN')")
-    public ResponseEntity<AnimalProfile> addProfile(@RequestBody AnimalProfileDto animalProfile){
-        AnimalProfile result = animalService.saveProfile(toAnimalProfile(animalProfile));
+    public ResponseEntity<?> addProfile(@RequestBody AnimalProfileReq animalProfile){
+        AnimalProfile result = animalService.saveProfile(animalPrMapper.toEntity(animalProfile));
         return new ResponseEntity<>(result, HttpStatus.CREATED);
     }
+
 
     public AnimalProfile toAnimalProfile(AnimalProfileDto animalProfileDto){
         AnimalProfile profile = new AnimalProfile();

@@ -1,6 +1,4 @@
 package kz.devhils.meathouse.model.entities;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,13 +13,14 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "animal_profile")
-public class AnimalProfile {
+
+public class AnimalProfile{
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
-    @JsonBackReference
     @ManyToOne(fetch = FetchType.EAGER)
     private Animal animal;
 
@@ -32,7 +31,7 @@ public class AnimalProfile {
     private String color;
 
     @Column(name = "weight")
-    private String weight;
+    private int weight;
 
     @Column(name = "breed")
     private String breed;

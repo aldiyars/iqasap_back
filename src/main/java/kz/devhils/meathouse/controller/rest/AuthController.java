@@ -43,11 +43,11 @@ public class AuthController {
                 throw new UsernameNotFoundException("User with email: " + email + " not found");
             }
 
-
             String token = jwtTokenProvider.createToken(email, user.getRoles());
             Map<Object, Object> response = new HashMap<>();
             response.put("email", email);
             response.put("token", token);
+            response.put("id", user.getId());
 
             return ResponseEntity.ok(response);
 

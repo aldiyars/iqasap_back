@@ -12,7 +12,7 @@ public class CreateUserDto {
     private String lastName;
     private String email;
     private String password;
-    private int tel;
+    private Long tel;
     private String address;
     private String imgUrl;
     private String lat;

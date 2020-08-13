@@ -1,6 +1,7 @@
 package kz.devhils.meathouse.model.entities;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
@@ -9,21 +10,28 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "animal_photo")
+@Table(name = "photo")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Photo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "img_url")
-    private String imgUrl;
-
-    @Column(name = "fileName")
+    @Column(name = "file_name")
     private String fileName;
+
+    @Column(name = "file_download_uri")
+    private String fileDownloadUri;
+
+    @Column(name = "file_type")
+    private String fileType;
+
+    @Column(name = "size")
+    private Long size;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at", nullable = false, updatable = false)

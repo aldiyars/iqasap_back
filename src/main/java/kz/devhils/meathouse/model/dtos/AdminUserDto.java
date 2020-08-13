@@ -16,6 +16,7 @@ public class AdminUserDto {
     private Long id;
     private String firstName;
     private String lastName;
+    private Long tel;
     private String email;
     private List<Roles> roles;
     private UserProfile userProfile;
@@ -34,6 +35,7 @@ public class AdminUserDto {
     public static AdminUserDto fromUser(Users user) {
         AdminUserDto adminUserDto = new AdminUserDto();
         adminUserDto.setId(user.getId());
+        adminUserDto.setTel(user.getTel());
         adminUserDto.setFirstName(user.getFirstName());
         adminUserDto.setLastName(user.getLastName());
         adminUserDto.setEmail(user.getEmail());
