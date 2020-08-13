@@ -21,18 +21,19 @@ public class AuthMobilRestController {
 
     private final UserService userService;
 
-    @PostMapping(value = "")
+    @PostMapping(value = "register")
     @ApiOperation("")
     public ResponseEntity<?> createUser(@RequestBody AuthMobileDto authMobileDto){
-        if (userService.findByTel(authMobileDto.getTel()) == null){
+        if (userService.findByTel(authMobileDto.getTel()) != null){
             return new ResponseEntity<>("Мұндай телефон базада бар!", HttpStatus.BAD_REQUEST);
         }
 
         UserProfile userProfile = new UserProfile();
+        UserProfile profile = userService.registerProfile(userProfile);
         Users users = new Users();
         users.setTel(authMobileDto.getTel());
         users.setPassword(authMobileDto.getPassword());
-        users.setProfile(userProfile);
+        users.setProfile(profile);
         Users result = userService.authMobile(users);
         return new ResponseEntity<>(result, HttpStatus.CREATED);
     }
