@@ -29,9 +29,11 @@ public class StatusRestController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-    @PostMapping()
-    public ResponseEntity<?> addStatus(@RequestBody Statuses status){
-        Statuses result = statusService.addStatus(status);
+    @PostMapping("{status}")
+    public ResponseEntity<?> addStatus(@PathVariable String status){
+        Statuses statuses = new Statuses();
+        statuses.setName(status);
+        Statuses result = statusService.addStatus(statuses);
         return new ResponseEntity<>(result, HttpStatus.CREATED);
     }
 

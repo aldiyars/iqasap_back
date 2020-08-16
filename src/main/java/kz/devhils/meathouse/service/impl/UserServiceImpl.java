@@ -49,7 +49,7 @@ public class UserServiceImpl  implements UserService {
 
     @Override
     public void deleteUserProfile(Long id) {
-
+        userRepo.deleteById(id);
     }
 
     @Override

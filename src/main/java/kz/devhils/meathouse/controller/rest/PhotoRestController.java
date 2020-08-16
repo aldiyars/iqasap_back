@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.xml.ws.Response;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.Arrays;
@@ -35,7 +36,7 @@ public class PhotoRestController {
     @PostMapping("/uploadFile")
     @ApiOperation("Залить файл")
     @ResponseBody
-    public ResponseEntity<?> uploadFile(@RequestParam("file") MultipartFile file) {
+    public Photo uploadFile(@RequestParam("file") MultipartFile file) {
         String fileName = photoService.storeFile(file);
 
         String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
@@ -52,12 +53,12 @@ public class PhotoRestController {
                 .build();
 
         Photo fileResource = photoService.save(fileResourceDto);
-        return new ResponseEntity<>(fileResource, HttpStatus.CREATED);
+        return fileResource;
     }
 
     @PostMapping("/uploadMultipleFiles")
     @ApiOperation("Залить все файлы")
-    public List<ResponseEntity<?>> uploadMultipleFiles(@RequestParam("files") MultipartFile[] files) {
+    public List<Photo> uploadMultipleFiles(@RequestParam("files") MultipartFile[] files) {
         return Arrays.asList(files)
                 .stream()
                 .map(file -> uploadFile(file))

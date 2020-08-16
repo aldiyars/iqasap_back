@@ -8,7 +8,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
-import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -23,5 +22,4 @@ public class AnimalProfileReq {
     private String breed;
     private int gender;
     private Double cost;
-    private Set<Long> photos;
 }

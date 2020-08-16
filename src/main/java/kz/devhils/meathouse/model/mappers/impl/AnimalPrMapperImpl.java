@@ -32,11 +32,11 @@ public class AnimalPrMapperImpl implements AnimalPrMapper {
     public AnimalProfile toEntity(AnimalProfileReq a) {
         Animal animal = animalService.findById(a.getAnimalId());
         Statuses statuses = statusService.findById(a.getStatusId());
-        List<Photo> photos = new ArrayList<>();
-        for (int i = 0; i < a.getPhotos().size(); i++){
-            Photo photo = photoService.findById(((List<Long>) a.getPhotos()).get(i));
-            photos.add(photo);
-        }
+//        List<Photo> photos = new ArrayList<>();
+//        for (int i = 0; i < a.getPhotos().size(); i++){
+//            Photo photo = photoService.findById(((List<Long>) a.getPhotos()).get(i));
+//            photos.add(photo);
+//        }
 
         AnimalProfile animalProfile = new AnimalProfile();
         animalProfile.setAnimal(animal);
@@ -45,7 +45,7 @@ public class AnimalPrMapperImpl implements AnimalPrMapper {
         animalProfile.setWeight(a.getWeight());
         animalProfile.setBreed(a.getBreed());
         animalProfile.setGender(a.getGender());
-        animalProfile.setPhotos((Set<Photo>) photos);
+//        animalProfile.setPhotos((Set<Photo>) photos);
         animalProfile.setCost(a.getCost());
         animalProfile.setStatuses(statuses);
 

@@ -28,10 +28,8 @@ public class StatusServiceImp implements StatusService {
 
     @Override
     public Statuses addStatus(Statuses status) {
-        if(statusRepo.findByName(status.getName()) != null){
-            statusRepo.save(status);
-        }
-        return status;
+        Statuses result = statusRepo.save(status);
+        return result;
     }
 
     @Override
