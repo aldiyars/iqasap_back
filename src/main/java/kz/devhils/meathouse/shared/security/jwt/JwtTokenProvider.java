@@ -57,6 +57,8 @@ public class JwtTokenProvider {
                 .compact();
     }
 
+
+
     public Authentication getAuthentication(String token){
         UserDetails userDetails = this.userDetailsService.loadUserByUsername(getUserEmail(token));
         return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
@@ -93,7 +95,6 @@ public class JwtTokenProvider {
         userRoles.forEach(roles -> {
             result.add(roles.getName());
         });
-
         return result;
     }
 }

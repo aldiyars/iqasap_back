@@ -39,7 +39,7 @@ public class Users {
     private List<Roles> roles;
 
     @OneToOne(fetch = FetchType.EAGER)
-    private UserProfile profile;
+    private UserProfile userProfile;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at", nullable = false, updatable = false)

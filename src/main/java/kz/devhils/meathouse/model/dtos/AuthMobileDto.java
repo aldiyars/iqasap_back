@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class AuthMobileDto {
-
     private Long tel;
     private String password;
 }

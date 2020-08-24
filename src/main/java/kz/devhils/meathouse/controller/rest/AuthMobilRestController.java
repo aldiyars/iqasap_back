@@ -33,7 +33,7 @@ public class AuthMobilRestController {
         Users users = new Users();
         users.setTel(authMobileDto.getTel());
         users.setPassword(authMobileDto.getPassword());
-        users.setProfile(profile);
+        users.setUserProfile(profile);
         Users result = userService.authMobile(users);
         return new ResponseEntity<>(result, HttpStatus.CREATED);
     }

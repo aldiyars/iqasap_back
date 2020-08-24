@@ -2,6 +2,7 @@ package kz.devhils.meathouse.model.dtos;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import kz.devhils.meathouse.model.entities.Photo;
 import lombok.Data;
 
 @Data
@@ -14,7 +15,6 @@ public class CreateUserDto {
     private String password;
     private Long tel;
     private String address;
-    private String imgUrl;
     private String lat;
     private String lng;
 }

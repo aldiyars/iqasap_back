@@ -6,6 +6,7 @@ import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -24,7 +25,7 @@ public class AnimalProfile{
     @ManyToOne(fetch = FetchType.EAGER)
     private Animal animal;
 
-    @Column(name = "age")
+    @Column(name = "age", nullable = true)
     private int age;
 
     @Column(name = "color")
@@ -40,7 +41,7 @@ public class AnimalProfile{
     private int gender;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    private Set<Photo> photos;
+    private List<Photo> photos;
 
     @Column(name = "cost")
     private Double cost;

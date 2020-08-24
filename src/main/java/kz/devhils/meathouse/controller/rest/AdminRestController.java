@@ -3,6 +3,7 @@ package kz.devhils.meathouse.controller.rest;
 
 import kz.devhils.meathouse.model.dtos.AdminUserDto;
 import kz.devhils.meathouse.model.dtos.CreateUserDto;
+import kz.devhils.meathouse.model.entities.Photo;
 import kz.devhils.meathouse.model.entities.UserProfile;
 import kz.devhils.meathouse.model.entities.Users;
 import kz.devhils.meathouse.service.UserService;
@@ -20,6 +21,8 @@ public class AdminRestController {
 
     private UserService userService;
 
+
+
     @GetMapping(value = "{id}")
     public ResponseEntity<AdminUserDto> getUserById(@PathVariable(name = "id") Long id){
         Users user = userService.findById(id);
@@ -29,6 +32,7 @@ public class AdminRestController {
         AdminUserDto result = AdminUserDto.fromUser(user);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
+
 
     @DeleteMapping(value = "{id}")
     public ResponseEntity<Users> deleteUserById(@PathVariable (value = "id") Long id){
@@ -67,9 +71,10 @@ public class AdminRestController {
         }
 
         UserProfile newProfile = new UserProfile();
+        Photo photo = new Photo();
 
         newProfile.setAddress(user.getAddress());
-        newProfile.setImgUrl(user.getImgUrl());
+        newProfile.setPhoto(photo);
         newProfile.setLat(user.getLat());
         newProfile.setLng(user.getLng());
 
@@ -81,10 +86,10 @@ public class AdminRestController {
         newUser.setLastName(user.getLastName());
         newUser.setPassword(user.getPassword());
         newUser.setEmail(user.getEmail());
-        newUser.setProfile(userProfile);
+        newUser.setUserProfile(userProfile);
         Users result = userService.register(newUser);
 
-        return new ResponseEntity(result, HttpStatus.OK);
+        return new ResponseEntity(AdminUserDto.fromUser(result), HttpStatus.OK);
     }
 
 }

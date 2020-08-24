@@ -14,6 +14,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -107,7 +108,8 @@ public class AnimalRestController {
     @PostMapping("child")
     @ApiOperation("Создание AnimalProfile")
     //    @PreAuthorize("HasRole('ROLE_ADMIN')")
-    public ResponseEntity<?> addProfile(@RequestBody AnimalProfileReq animalProfile){
+    public ResponseEntity<?> addProfile(@RequestBody AnimalProfileReq animalProfile,@RequestBody MultipartFile multipartFile){
+        System.out.println(animalPrMapper.toEntity(animalProfile));
         AnimalProfile result = animalService.saveProfile(animalPrMapper.toEntity(animalProfile));
         return new ResponseEntity<>(result, HttpStatus.CREATED);
     }

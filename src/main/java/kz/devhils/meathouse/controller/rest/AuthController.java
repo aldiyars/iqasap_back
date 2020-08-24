@@ -35,17 +35,17 @@ public class AuthController {
     @PostMapping("login")
     public ResponseEntity login(@RequestBody AuthenticationRequestDto requestDto){
         try {
-            String email = requestDto.getEmail();
-            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email, requestDto.getPassword()));
-            Users user = userService.findByEmail(email);
+            String tel = requestDto.getTel().toString();
+            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(tel, requestDto.getPassword()));
+            Users user = userService.findByEmail(tel);
 
             if (user == null){
-                throw new UsernameNotFoundException("User with email: " + email + " not found");
+                throw new UsernameNotFoundException("User with tel: " + tel + " not found");
             }
 
-            String token = jwtTokenProvider.createToken(email, user.getRoles());
+            String token = jwtTokenProvider.createToken(tel, user.getRoles());
             Map<Object, Object> response = new HashMap<>();
-            response.put("email", email);
+            response.put("tel", tel);
             response.put("token", token);
             response.put("id", user.getId());
 

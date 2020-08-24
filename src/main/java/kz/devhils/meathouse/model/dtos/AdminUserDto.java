@@ -28,7 +28,7 @@ public class AdminUserDto {
         user.setLastName(lastName);
         user.setEmail(email);
         user.setRoles(roles);
-        user.setProfile(userProfile);
+        user.setUserProfile(userProfile);
         return user;
     }
 
@@ -39,7 +39,7 @@ public class AdminUserDto {
         adminUserDto.setFirstName(user.getFirstName());
         adminUserDto.setLastName(user.getLastName());
         adminUserDto.setEmail(user.getEmail());
-        adminUserDto.setUserProfile(user.getProfile());
+        adminUserDto.setUserProfile(user.getUserProfile());
         adminUserDto.setRoles(user.getRoles());
         return adminUserDto;
     }

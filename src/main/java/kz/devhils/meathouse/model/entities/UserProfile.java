@@ -21,8 +21,8 @@ public class UserProfile {
     @Column(name = "address")
     private String address;
 
-    @Column(name = "image_url")
-    private String imgUrl;
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Photo photo;
 
     @Column(name = "lat")
     private String lat;

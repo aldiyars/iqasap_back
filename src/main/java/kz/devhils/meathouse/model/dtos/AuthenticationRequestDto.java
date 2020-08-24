@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class AuthenticationRequestDto {
-    private String email;
+    private Long tel;
     private String password;
 }

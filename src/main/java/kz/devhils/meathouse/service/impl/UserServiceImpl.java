@@ -66,6 +66,9 @@ public class UserServiceImpl  implements UserService {
 
     @Override
     public Users findByTel(Long tel) {
+        Users result = userRepo.findByTel(tel);
+        log.info("IN findByEmail - {} user found by email: {}", result, tel);
+
         return userRepo.findByTel(tel);
     }
 
@@ -78,7 +81,7 @@ public class UserServiceImpl  implements UserService {
 
     @Override
     public Users findByEmail(String email) {
-        Users result = userRepo.findByEmail(email);
+        Users result = userRepo.findByTel(Long.parseLong(email));
         log.info("IN findByEmail - {} user found by email: {}", result, email);
         return result;
     }
