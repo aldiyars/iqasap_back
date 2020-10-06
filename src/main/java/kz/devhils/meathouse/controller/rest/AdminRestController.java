@@ -3,9 +3,11 @@ package kz.devhils.meathouse.controller.rest;
 
 import kz.devhils.meathouse.model.dtos.AdminUserDto;
 import kz.devhils.meathouse.model.dtos.CreateUserDto;
+import kz.devhils.meathouse.model.dtos.UpdateUserDto;
 import kz.devhils.meathouse.model.entities.Photo;
 import kz.devhils.meathouse.model.entities.UserProfile;
 import kz.devhils.meathouse.model.entities.Users;
+import kz.devhils.meathouse.model.mappers.UserMapper;
 import kz.devhils.meathouse.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -20,8 +22,7 @@ import java.util.List;
 public class AdminRestController {
 
     private UserService userService;
-
-
+    private UserMapper userMapper;
 
     @GetMapping(value = "{id}")
     public ResponseEntity<AdminUserDto> getUserById(@PathVariable(name = "id") Long id){
@@ -57,8 +58,8 @@ public class AdminRestController {
     }
 
     @RequestMapping(method = RequestMethod.PUT)
-    public ResponseEntity<Users> updateUser(@RequestBody Users user){
-        Users result = userService.updateUser(user);
+    public ResponseEntity<Users> updateUser(@RequestBody UpdateUserDto user){
+        Users result = userService.updateUser(userMapper.toEntity(user));
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 

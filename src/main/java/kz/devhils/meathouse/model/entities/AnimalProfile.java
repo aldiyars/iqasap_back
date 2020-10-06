@@ -25,7 +25,7 @@ public class AnimalProfile{
     @ManyToOne(fetch = FetchType.EAGER)
     private Animal animal;
 
-    @Column(name = "age", nullable = true)
+    @Column(name = "age")
     private int age;
 
     @Column(name = "color")
