@@ -1,28 +1,20 @@
 package kz.devhils.meathouse.model.mappers.impl;
 
-import kz.devhils.meathouse.model.dtos.AnimalProfileDto;
 import kz.devhils.meathouse.model.entities.Animal;
 import kz.devhils.meathouse.model.entities.AnimalProfile;
-import kz.devhils.meathouse.model.entities.Photo;
 import kz.devhils.meathouse.model.entities.Statuses;
-import kz.devhils.meathouse.model.mappers.AnimalPrMapper;
-import kz.devhils.meathouse.model.request.AnimalProfileReq;
-import kz.devhils.meathouse.model.response.AnimalProfileRes;
+import kz.devhils.meathouse.model.mappers.AnimalProfileMapper;
+import kz.devhils.meathouse.model.dtos.request.AnimalProfileReq;
+import kz.devhils.meathouse.model.dtos.response.AnimalProfileRes;
 import kz.devhils.meathouse.service.AnimalService;
 import kz.devhils.meathouse.service.PhotoService;
 import kz.devhils.meathouse.service.StatusService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
-
 @Service
 @AllArgsConstructor
-public class AnimalPrMapperImpl implements AnimalPrMapper {
+public class AnimalProfileMapperImpl implements AnimalProfileMapper {
 
     private AnimalService animalService;
     private StatusService statusService;

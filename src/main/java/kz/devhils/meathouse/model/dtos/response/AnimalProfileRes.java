@@ -1,4 +1,4 @@
-package kz.devhils.meathouse.model.request;
+package kz.devhils.meathouse.model.dtos.response;
 
 import kz.devhils.meathouse.model.entities.Animal;
 import kz.devhils.meathouse.model.entities.Photo;
@@ -7,19 +7,23 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
+import java.util.Date;
+import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class AnimalProfileReq {
+public class AnimalProfileRes {
 
-    private Long animalId;
-    private Long statusId;
+    private Long id;
+    private Animal animal;
     private int age;
     private String color;
-    private int weight;
+    private String weight;
     private String breed;
     private int gender;
+    private Set<Photo> photos;
     private Double cost;
+    private Statuses statuses;
+    private Date createdAt;
 }

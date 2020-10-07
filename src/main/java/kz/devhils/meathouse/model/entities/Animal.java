@@ -22,8 +22,8 @@ public class Animal {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "icon")
-    private String iconUrl;
+    @ManyToOne
+    private Photo photo;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at", nullable = false, updatable = false)

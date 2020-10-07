@@ -3,18 +3,22 @@ package kz.devhils.meathouse.controller.rest;
 
 import io.swagger.annotations.ApiOperation;
 import kz.devhils.meathouse.model.dtos.AnimalProfileDto;
+import kz.devhils.meathouse.model.dtos.request.AnimalCreate;
+import kz.devhils.meathouse.model.dtos.response.AnimalCreateResp;
 import kz.devhils.meathouse.model.entities.Animal;
 import kz.devhils.meathouse.model.entities.AnimalProfile;
+import kz.devhils.meathouse.model.entities.Photo;
 import kz.devhils.meathouse.model.entities.Statuses;
-import kz.devhils.meathouse.model.mappers.AnimalPrMapper;
 import kz.devhils.meathouse.model.mappers.AnimalProfileMapper;
-import kz.devhils.meathouse.model.request.AnimalProfileReq;
+import kz.devhils.meathouse.model.dtos.request.AnimalProfileReq;
 import kz.devhils.meathouse.service.AnimalService;
+import kz.devhils.meathouse.service.PhotoService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.util.List;
 
@@ -24,8 +28,29 @@ import java.util.List;
 public class AnimalRestController {
 
     private AnimalService animalService;
-    private AnimalPrMapper animalPrMapper;
+    private AnimalProfileMapper animalProfileMapper;
+    private PhotoService photoService;
 
+
+    public Photo uploadFile(MultipartFile file) {
+        String fileName = photoService.storeFile(file);
+
+        String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
+                .path("/api/files/")
+                .path("downloadFile/")
+                .path(fileName)
+                .toUriString();
+
+        Photo fileResourceDto = Photo.builder()
+                .fileDownloadUri(fileDownloadUri)
+                .fileName(fileName)
+                .size(file.getSize())
+                .fileType(file.getContentType())
+                .build();
+
+        Photo fileResource = photoService.save(fileResourceDto);
+        return fileResource;
+    }
     @GetMapping()
     @ApiOperation("Список всех Animal")
     public ResponseEntity<Animal> getAll(){
@@ -36,8 +61,13 @@ public class AnimalRestController {
     @PostMapping()
     @ApiOperation("Создание Animal")
 //    @PreAuthorize("HasRole('ROLE_ADMIN')")
-    public ResponseEntity<Animal> addAnimal(@RequestBody Animal animal){
-        Animal result = animalService.saveAnimal(animal);
+    public ResponseEntity<?> addAnimal(@RequestBody AnimalCreate animalCreate, @RequestBody MultipartFile file){
+        Photo photo = uploadFile(file);
+        Animal animal = AnimalCreate.fromDto(animalCreate);
+        animal.setPhoto(photo);
+        animal = animalService.saveAnimal(animal);
+
+        AnimalCreateResp result = AnimalCreateResp.fromEntity(animal);
         return new ResponseEntity<>(result, HttpStatus.CREATED);
     }
 
@@ -109,8 +139,8 @@ public class AnimalRestController {
     @ApiOperation("Создание AnimalProfile")
     //    @PreAuthorize("HasRole('ROLE_ADMIN')")
     public ResponseEntity<?> addProfile(@RequestBody AnimalProfileReq animalProfile,@RequestBody MultipartFile multipartFile){
-        System.out.println(animalPrMapper.toEntity(animalProfile));
-        AnimalProfile result = animalService.saveProfile(animalPrMapper.toEntity(animalProfile));
+        System.out.println(animalProfileMapper.toEntity(animalProfile));
+        AnimalProfile result = animalService.saveProfile(animalProfileMapper.toEntity(animalProfile));
         return new ResponseEntity<>(result, HttpStatus.CREATED);
     }
 
