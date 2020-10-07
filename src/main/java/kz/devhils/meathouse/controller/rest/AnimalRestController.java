@@ -2,15 +2,14 @@ package kz.devhils.meathouse.controller.rest;
 
 
 import io.swagger.annotations.ApiOperation;
-import kz.devhils.meathouse.model.dtos.AnimalProfileDto;
 import kz.devhils.meathouse.model.dtos.request.AnimalCreate;
 import kz.devhils.meathouse.model.dtos.response.AnimalCreateResp;
 import kz.devhils.meathouse.model.entities.Animal;
 import kz.devhils.meathouse.model.entities.AnimalProfile;
 import kz.devhils.meathouse.model.entities.Photo;
 import kz.devhils.meathouse.model.entities.Statuses;
-import kz.devhils.meathouse.model.mappers.AnimalProfileMapper;
 import kz.devhils.meathouse.model.dtos.request.AnimalProfileReq;
+import kz.devhils.meathouse.model.mappers.AnimalProfileMapper;
 import kz.devhils.meathouse.service.AnimalService;
 import kz.devhils.meathouse.service.PhotoService;
 import lombok.AllArgsConstructor;
@@ -130,7 +129,7 @@ public class AnimalRestController {
 
     @GetMapping("child/{id}")
     @ApiOperation("Получение AnimalProfile по ID")
-    public ResponseEntity<?> getOne(@PathVariable Long id){
+    public ResponseEntity<AnimalProfile> getOne(@PathVariable Long id){
         AnimalProfile result = animalService.getProfileById(id);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
@@ -145,18 +144,18 @@ public class AnimalRestController {
     }
 
 
-    public AnimalProfile toAnimalProfile(AnimalProfileDto animalProfileDto){
-        AnimalProfile profile = new AnimalProfile();
-        Animal animal = animalService.findById(animalProfileDto.getAnimalId());
-        profile.setAnimal(animal);
-        profile.setAge(animalProfileDto.getAge());
-        profile.setColor(animalProfileDto.getColor());
-        profile.setWeight(animalProfileDto.getWeight());
-        profile.setBreed(animalProfileDto.getBreed());
-        profile.setGender(animalProfileDto.getGender());
-        profile.setCost(animalProfileDto.getCost());
-        return profile;
-    }
+//    public AnimalProfile toAnimalProfile(AnimalProfileDto animalProfileDto){
+//        AnimalProfile profile = new AnimalProfile();
+//        Animal animal = animalService.findById(animalProfileDto.getAnimalId());
+//        profile.setAnimal(animal);
+//        profile.setAge(animalProfileDto.getAge());
+//        profile.setColor(animalProfileDto.getColor());
+//        profile.setWeight(animalProfileDto.getWeight());
+//        profile.setBreed(animalProfileDto.getBreed());
+//        profile.setGender(animalProfileDto.getGender());
+//        profile.setCost(animalProfileDto.getCost());
+//        return profile;
+//    }
 
     @RequestMapping(value = "child", method = RequestMethod.PUT)
     @ApiOperation("Обновить AnimalProfile")
