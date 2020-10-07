@@ -9,6 +9,7 @@ import kz.devhils.meathouse.repositories.UserRepo;
 import kz.devhils.meathouse.service.UserService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -17,12 +18,15 @@ import java.util.List;
 
 @Service
 @Slf4j
-@AllArgsConstructor
 public class UserServiceImpl  implements UserService {
 
+    @Autowired
     private UserRepo userRepo;
+    @Autowired
     private RoleRepo roleRepo;
+    @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
+    @Autowired
     private UserProfileRepo userProfileRepo;
 
     @Override
@@ -67,7 +71,7 @@ public class UserServiceImpl  implements UserService {
     @Override
     public Users findByTel(Long tel) {
         Users result = userRepo.findByTel(tel);
-        log.info("IN findByEmail - {} user found by email: {}", result, tel);
+        log.info("IN findByEmail - {} user found by phone: {}", result, tel);
 
         return userRepo.findByTel(tel);
     }

@@ -3,7 +3,6 @@ package kz.devhils.meathouse.controller.rest;
 
 import io.swagger.annotations.ApiOperation;
 import kz.devhils.meathouse.model.dtos.request.AnimalCreate;
-import kz.devhils.meathouse.model.dtos.response.AnimalCreateResp;
 import kz.devhils.meathouse.model.entities.Animal;
 import kz.devhils.meathouse.model.entities.AnimalProfile;
 import kz.devhils.meathouse.model.entities.Photo;
@@ -19,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -35,13 +35,20 @@ public class AnimalRestController {
         String fileName = photoService.storeFile(file);
 
         String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path("/api/files/")
+                .path("/api/photo/")
                 .path("downloadFile/")
+                .path(fileName)
+                .toUriString();
+
+        String fileUrl = ServletUriComponentsBuilder.fromCurrentContextPath()
+                .path("/api/photo/")
+                .path("get/")
                 .path(fileName)
                 .toUriString();
 
         Photo fileResourceDto = Photo.builder()
                 .fileDownloadUri(fileDownloadUri)
+                .fileUrl(fileUrl)
                 .fileName(fileName)
                 .size(file.getSize())
                 .fileType(file.getContentType())
@@ -57,17 +64,16 @@ public class AnimalRestController {
         return new ResponseEntity(animals, HttpStatus.OK);
     }
 
-    @PostMapping()
+    @PostMapping(consumes = {"multipart/form-data"})
     @ApiOperation("Создание Animal")
 //    @PreAuthorize("HasRole('ROLE_ADMIN')")
-    public ResponseEntity<?> addAnimal(@RequestBody AnimalCreate animalCreate, @RequestBody MultipartFile file){
+    public ResponseEntity<?> addAnimal(@ModelAttribute AnimalCreate animalCreate, @RequestPart MultipartFile file){
         Photo photo = uploadFile(file);
         Animal animal = AnimalCreate.fromDto(animalCreate);
         animal.setPhoto(photo);
         animal = animalService.saveAnimal(animal);
 
-        AnimalCreateResp result = AnimalCreateResp.fromEntity(animal);
-        return new ResponseEntity<>(result, HttpStatus.CREATED);
+        return new ResponseEntity<>(animal, HttpStatus.CREATED);
     }
 
     @GetMapping("{id}")
@@ -137,9 +143,14 @@ public class AnimalRestController {
     @PostMapping("child")
     @ApiOperation("Создание AnimalProfile")
     //    @PreAuthorize("HasRole('ROLE_ADMIN')")
-    public ResponseEntity<?> addProfile(@RequestBody AnimalProfileReq animalProfile,@RequestBody MultipartFile multipartFile){
-        System.out.println(animalProfileMapper.toEntity(animalProfile));
-        AnimalProfile result = animalService.saveProfile(animalProfileMapper.toEntity(animalProfile));
+    public ResponseEntity<?> addProfile(@ModelAttribute AnimalProfileReq animalProfileReq,
+                                        @RequestPart MultipartFile multipartFile){
+        Photo photos = uploadFile(multipartFile);
+
+        AnimalProfile animalProfile = animalProfileMapper.toEntity(animalProfileReq);
+        animalProfile.setPhotos(Collections.singletonList(photos));
+
+        AnimalProfile result = animalService.saveProfile(animalProfile);
         return new ResponseEntity<>(result, HttpStatus.CREATED);
     }
 

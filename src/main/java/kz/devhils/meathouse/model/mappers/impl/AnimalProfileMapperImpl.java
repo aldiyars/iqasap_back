@@ -2,6 +2,7 @@ package kz.devhils.meathouse.model.mappers.impl;
 
 import kz.devhils.meathouse.model.entities.Animal;
 import kz.devhils.meathouse.model.entities.AnimalProfile;
+import kz.devhils.meathouse.model.entities.Photo;
 import kz.devhils.meathouse.model.entities.Statuses;
 import kz.devhils.meathouse.model.mappers.AnimalProfileMapper;
 import kz.devhils.meathouse.model.dtos.request.AnimalProfileReq;
@@ -11,6 +12,8 @@ import kz.devhils.meathouse.service.PhotoService;
 import kz.devhils.meathouse.service.StatusService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.Collections;
 
 @Service
 @AllArgsConstructor
@@ -37,7 +40,6 @@ public class AnimalProfileMapperImpl implements AnimalProfileMapper {
         animalProfile.setWeight(a.getWeight());
         animalProfile.setBreed(a.getBreed());
         animalProfile.setGender(a.getGender());
-//        animalProfile.setPhotos((Set<Photo>) photos);
         animalProfile.setCost(a.getCost());
         animalProfile.setStatuses(statuses);
 

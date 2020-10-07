@@ -1,9 +1,11 @@
 package kz.devhils.meathouse.model.dtos.request;
 
+import kz.devhils.meathouse.model.entities.Photo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
 
 
 @AllArgsConstructor

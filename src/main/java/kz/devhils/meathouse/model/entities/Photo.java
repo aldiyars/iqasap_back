@@ -27,6 +27,9 @@ public class Photo {
     @Column(name = "file_download_uri")
     private String fileDownloadUri;
 
+    @Column(name = "file_url")
+    private String fileUrl;
+
     @Column(name = "file_type")
     private String fileType;
 

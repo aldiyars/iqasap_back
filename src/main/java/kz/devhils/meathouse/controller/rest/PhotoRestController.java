@@ -45,8 +45,15 @@ public class PhotoRestController {
                 .path(fileName)
                 .toUriString();
 
+        String fileUrl = ServletUriComponentsBuilder.fromCurrentContextPath()
+                .path("/api/photo/")
+                .path("get/")
+                .path(fileName)
+                .toUriString();
+
         Photo fileResourceDto = Photo.builder()
                 .fileDownloadUri(fileDownloadUri)
+                .fileUrl(fileUrl)
                 .fileName(fileName)
                 .size(file.getSize())
                 .fileType(file.getContentType())
