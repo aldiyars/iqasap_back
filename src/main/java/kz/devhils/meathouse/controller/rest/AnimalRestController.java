@@ -6,12 +6,13 @@ import kz.devhils.meathouse.model.dtos.request.AnimalCreate;
 import kz.devhils.meathouse.model.entities.Animal;
 import kz.devhils.meathouse.model.entities.AnimalProfile;
 import kz.devhils.meathouse.model.entities.Photo;
-import kz.devhils.meathouse.model.entities.Statuses;
+import kz.devhils.meathouse.model.entities.Status;
 import kz.devhils.meathouse.model.dtos.request.AnimalProfileReq;
 import kz.devhils.meathouse.model.mappers.AnimalProfileMapper;
 import kz.devhils.meathouse.service.AnimalService;
 import kz.devhils.meathouse.service.PhotoService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,11 +24,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/v1/animals")
-@AllArgsConstructor
 public class AnimalRestController {
 
+    @Autowired
     private AnimalService animalService;
+    @Autowired
     private AnimalProfileMapper animalProfileMapper;
+    @Autowired
     private PhotoService photoService;
 
 
@@ -179,13 +182,13 @@ public class AnimalRestController {
     @PostMapping("child/setstatus/{id}")
     @ApiOperation("Изменение статус AnimalProfile по ID")
 //    @PreAuthorize("HasRole('ROLE_ADMIN')")
-    public ResponseEntity<?> updateStatus(@PathVariable Long id, @RequestBody Statuses statuses){
+    public ResponseEntity<?> updateStatus(@PathVariable Long id, @RequestBody Status status){
         AnimalProfile result = animalService.getProfileById(id);
         if (result.getId() == null && result == null){
             return new ResponseEntity(id, HttpStatus.NO_CONTENT);
         }
 
-        animalService.updateStatus(result, statuses);
+        animalService.updateStatus(result, status);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 

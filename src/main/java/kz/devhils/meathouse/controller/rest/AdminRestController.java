@@ -5,12 +5,11 @@ import kz.devhils.meathouse.model.dtos.AdminUserDto;
 import kz.devhils.meathouse.model.dtos.CreateUserDto;
 import kz.devhils.meathouse.model.dtos.UpdateUserDto;
 import kz.devhils.meathouse.model.entities.Photo;
+import kz.devhils.meathouse.model.entities.User;
 import kz.devhils.meathouse.model.entities.UserProfile;
-import kz.devhils.meathouse.model.entities.Users;
 import kz.devhils.meathouse.model.mappers.UserMapper;
 import kz.devhils.meathouse.repositories.PhotoRepo;
 import kz.devhils.meathouse.service.UserService;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,7 +30,7 @@ public class AdminRestController {
 
     @GetMapping(value = "{id}")
     public ResponseEntity<AdminUserDto> getUserById(@PathVariable(name = "id") Long id){
-        Users user = userService.findById(id);
+        User user = userService.findById(id);
         if (user == null){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
@@ -41,8 +40,8 @@ public class AdminRestController {
 
 
     @DeleteMapping(value = "{id}")
-    public ResponseEntity<Users> deleteUserById(@PathVariable (value = "id") Long id){
-        Users user = userService.findById(id);
+    public ResponseEntity<User> deleteUserById(@PathVariable (value = "id") Long id){
+        User user = userService.findById(id);
 
         if (user == null){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -51,27 +50,27 @@ public class AdminRestController {
         return new ResponseEntity(HttpStatus.OK);
     }
     @DeleteMapping()
-    public ResponseEntity<?> deleteUser(@RequestBody Users user){
+    public ResponseEntity<?> deleteUser(@RequestBody User user){
         userService.delete(user);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @GetMapping(value = "all")
-    public ResponseEntity<Users> getAllUser(){
-        List<Users> users = userService.getAll();
+    public ResponseEntity<User> getAllUser(){
+        List<User> users = userService.getAll();
         return new ResponseEntity(users, HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.PUT)
-    public ResponseEntity<Users> updateUser(@RequestBody UpdateUserDto user){
-        Users result = userService.updateUser(userMapper.toEntity(user));
+    public ResponseEntity<User> updateUser(@RequestBody UpdateUserDto user){
+        User result = userService.updateUser(userMapper.toEntity(user));
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     @PostMapping()
     public ResponseEntity<?> createUser(@RequestBody CreateUserDto user){
 
-        Users checkUser = userService.findByTel(user.getTel());
+        User checkUser = userService.findByTel(user.getTel());
         if(checkUser != null){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
@@ -87,14 +86,14 @@ public class AdminRestController {
 
         UserProfile userProfile = userService.registerProfile(newProfile);
 
-        Users newUser = new Users();
+        User newUser = new User();
         newUser.setTel(user.getTel());
         newUser.setFirstName(user.getFirstName());
         newUser.setLastName(user.getLastName());
         newUser.setPassword(user.getPassword());
         newUser.setEmail(user.getEmail());
         newUser.setUserProfile(userProfile);
-        Users result = userService.register(newUser);
+        User result = userService.register(newUser);
 
         return new ResponseEntity(AdminUserDto.fromUser(result), HttpStatus.OK);
     }

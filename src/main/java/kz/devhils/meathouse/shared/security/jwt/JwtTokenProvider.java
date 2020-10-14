@@ -1,7 +1,7 @@
 package kz.devhils.meathouse.shared.security.jwt;
 
 import io.jsonwebtoken.*;
-import kz.devhils.meathouse.model.entities.Roles;
+import kz.devhils.meathouse.model.entities.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -42,7 +42,7 @@ public class JwtTokenProvider {
         secret = Base64.getEncoder().encodeToString(secret.getBytes());
     }
 
-    public String createToken(String email, List<Roles> roles){
+    public String createToken(String email, List<Role> roles){
         Claims claims = Jwts.claims().setSubject(email);
         claims.put("roles", getRoleNames(roles));
 
@@ -89,7 +89,7 @@ public class JwtTokenProvider {
         }
     }
 
-    public List<String> getRoleNames(List<Roles> userRoles){
+    public List<String> getRoleNames(List<Role> userRoles){
         List<String> result = new ArrayList<>();
 
         userRoles.forEach(roles -> {

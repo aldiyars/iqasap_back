@@ -1,7 +1,7 @@
 package kz.devhils.meathouse.service;
 
 import kz.devhils.meathouse.model.entities.Feed;
-import kz.devhils.meathouse.model.entities.Statuses;
+import kz.devhils.meathouse.model.entities.Status;
 
 import java.util.List;
 
@@ -13,5 +13,5 @@ public interface FeedService {
     Feed update(Feed feed);
     void deleteById(Long id);
     void delete(Feed feed);
-    Feed updateStatus(Long id, Statuses status);
+    Feed updateStatus(Long id, Status status);
 }

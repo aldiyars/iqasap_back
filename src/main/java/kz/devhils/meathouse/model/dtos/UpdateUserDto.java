@@ -2,7 +2,7 @@ package kz.devhils.meathouse.model.dtos;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import kz.devhils.meathouse.model.entities.Roles;
+import kz.devhils.meathouse.model.entities.Role;
 import kz.devhils.meathouse.model.entities.UserProfile;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,6 +22,6 @@ public class UpdateUserDto {
     private String email;
     private String password;
     private Long tel;
-    private List<Roles> roles;
+    private List<Role> roles;
     private UserProfile profile;
 }

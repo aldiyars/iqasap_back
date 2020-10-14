@@ -2,7 +2,7 @@ package kz.devhils.meathouse.model.dtos;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import kz.devhils.meathouse.model.entities.Users;
+import kz.devhils.meathouse.model.entities.User;
 import lombok.Data;
 
 @Data
@@ -13,8 +13,8 @@ public class UserDto {
     private String lastName;
     private String email;
 
-    public Users toUser(){
-        Users user = new Users();
+    public User toUser(){
+        User user = new User();
         user.setId(id);
         user.setFirstName(firstName);
         user.setLastName(lastName);
@@ -23,7 +23,7 @@ public class UserDto {
         return user;
     }
 
-    public static UserDto fromUser(Users user) {
+    public static UserDto fromUser(User user) {
         UserDto userDto = new UserDto();
         userDto.setId(user.getId());
         userDto.setFirstName(user.getFirstName());

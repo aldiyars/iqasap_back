@@ -1,15 +1,15 @@
 package kz.devhils.meathouse.service;
 
-import kz.devhils.meathouse.model.entities.Services;
+import kz.devhils.meathouse.model.entities.Service;
 
 import java.util.List;
 
 public interface ServicesService {
 
-    Services findById(Long id);
-    List<Services> getAll();
-    Services save(Services service);
-    Services update(Services service);
-    void delete(Services service);
+    Service findById(Long id);
+    List<Service> getAll();
+    Service save(Service service);
+    Service update(Service service);
+    void delete(Service service);
     void deleteById(Long id);
 }

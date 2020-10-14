@@ -2,37 +2,43 @@ package kz.devhils.meathouse.model.mappers.impl;
 
 import kz.devhils.meathouse.model.entities.Animal;
 import kz.devhils.meathouse.model.entities.AnimalProfile;
-import kz.devhils.meathouse.model.entities.Photo;
-import kz.devhils.meathouse.model.entities.Statuses;
+import kz.devhils.meathouse.model.entities.Status;
 import kz.devhils.meathouse.model.mappers.AnimalProfileMapper;
 import kz.devhils.meathouse.model.dtos.request.AnimalProfileReq;
 import kz.devhils.meathouse.model.dtos.response.AnimalProfileRes;
 import kz.devhils.meathouse.service.AnimalService;
-import kz.devhils.meathouse.service.PhotoService;
+import kz.devhils.meathouse.service.AnimalServiceService;
 import kz.devhils.meathouse.service.StatusService;
-import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 @Service
-@AllArgsConstructor
 public class AnimalProfileMapperImpl implements AnimalProfileMapper {
 
+    @Autowired
     private AnimalService animalService;
+    @Autowired
+    private AnimalServiceService animalServiceService;
+    @Autowired
     private StatusService statusService;
-    private PhotoService photoService;
 
     @Override
     public AnimalProfile toEntity(AnimalProfileReq a) {
         Animal animal = animalService.findById(a.getAnimalId());
-        Statuses statuses = statusService.findById(a.getStatusId());
-//        List<Photo> photos = new ArrayList<>();
-//        for (int i = 0; i < a.getPhotos().size(); i++){
-//            Photo photo = photoService.findById(((List<Long>) a.getPhotos()).get(i));
-//            photos.add(photo);
-//        }
+        Status status = statusService.findById(a.getStatusId());
 
+        List<kz.devhils.meathouse.model.entities.AnimalService> animalServices = new ArrayList<>();
+        if (a.getAnimalServiceIds().size() >=1){
+            int ids = a.getAnimalServiceIds().size();
+            for (int i = 0; i < ids; i++){
+                kz.devhils.meathouse.model.entities.AnimalService animalService = animalServiceService.findById(a.getAnimalServiceIds().get(i));
+                animalServices.add(animalService);
+            }
+        }
         AnimalProfile animalProfile = new AnimalProfile();
         animalProfile.setAnimal(animal);
         animalProfile.setAge(a.getAge());
@@ -41,7 +47,9 @@ public class AnimalProfileMapperImpl implements AnimalProfileMapper {
         animalProfile.setBreed(a.getBreed());
         animalProfile.setGender(a.getGender());
         animalProfile.setCost(a.getCost());
-        animalProfile.setStatuses(statuses);
+        animalProfile.setStatus(status);
+
+        animalProfile.setAnimalServices(animalServices);
 
         return animalProfile;
     }

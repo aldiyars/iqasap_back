@@ -11,7 +11,7 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "payment_types")
+@Table(name = "t_payment_types")
 @Entity
 public class PaymentType {
 
@@ -24,7 +24,7 @@ public class PaymentType {
     private String name;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    private Statuses status;
+    private Status status;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at", nullable = false, updatable = false)

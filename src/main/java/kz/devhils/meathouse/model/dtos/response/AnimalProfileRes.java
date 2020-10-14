@@ -2,7 +2,7 @@ package kz.devhils.meathouse.model.dtos.response;
 
 import kz.devhils.meathouse.model.entities.Animal;
 import kz.devhils.meathouse.model.entities.Photo;
-import kz.devhils.meathouse.model.entities.Statuses;
+import kz.devhils.meathouse.model.entities.Status;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,6 +24,6 @@ public class AnimalProfileRes {
     private int gender;
     private Set<Photo> photos;
     private Double cost;
-    private Statuses statuses;
+    private Status status;
     private Date createdAt;
 }

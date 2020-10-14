@@ -1,9 +1,9 @@
 package kz.devhils.meathouse.model.dtos;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import kz.devhils.meathouse.model.entities.Roles;
+import kz.devhils.meathouse.model.entities.Role;
+import kz.devhils.meathouse.model.entities.User;
 import kz.devhils.meathouse.model.entities.UserProfile;
-import kz.devhils.meathouse.model.entities.Users;
 import lombok.Data;
 
 import java.util.List;
@@ -18,11 +18,11 @@ public class AdminUserDto {
     private String lastName;
     private Long tel;
     private String email;
-    private List<Roles> roles;
+    private List<Role> roles;
     private UserProfile userProfile;
 
-    public Users toUser() {
-        Users user = new Users();
+    public User toUser() {
+        User user = new User();
         user.setId(id);
         user.setFirstName(firstName);
         user.setLastName(lastName);
@@ -32,7 +32,7 @@ public class AdminUserDto {
         return user;
     }
 
-    public static AdminUserDto fromUser(Users user) {
+    public static AdminUserDto fromUser(User user) {
         AdminUserDto adminUserDto = new AdminUserDto();
         adminUserDto.setId(user.getId());
         adminUserDto.setTel(user.getTel());

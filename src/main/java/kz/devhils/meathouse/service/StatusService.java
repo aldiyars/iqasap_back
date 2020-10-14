@@ -1,15 +1,17 @@
 package kz.devhils.meathouse.service;
 
-import kz.devhils.meathouse.model.entities.Statuses;
+import kz.devhils.meathouse.model.entities.Status;
 
 import java.util.List;
 
+
 public interface StatusService {
 
-    Statuses findById(Long id);
-    List<Statuses> getAll();
-    Statuses addStatus(Statuses status);
-    Statuses update(Statuses status);
-    void delete(Statuses status);
+    Status findById(Long id);
+    List<Status> getAll();
+    Status addStatus(Status status);
+    Status update(Status status);
+    void delete(Status status);
     void deleteById(Long id);
+    Status findByName(String name);
 }

@@ -1,7 +1,7 @@
 package kz.devhils.meathouse.repositories;
 
-import kz.devhils.meathouse.model.entities.Services;
+import kz.devhils.meathouse.model.entities.Service;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ServicesRepo extends JpaRepository<Services, Long> {
+public interface ServicesRepo extends JpaRepository<Service, Long> {
 }

@@ -13,10 +13,8 @@ import java.util.Set;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "animal_profile")
-
+@Table(name = "t_animal_profile")
 public class AnimalProfile{
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -43,11 +41,14 @@ public class AnimalProfile{
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Photo> photos;
 
+    @OneToMany(fetch = FetchType.LAZY)
+    private List<AnimalService> animalServices;
+
     @Column(name = "cost")
     private Double cost;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    private Statuses statuses;
+    private Status status;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at", nullable = false, updatable = false)

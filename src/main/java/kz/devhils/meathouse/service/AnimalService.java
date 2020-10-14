@@ -2,7 +2,7 @@ package kz.devhils.meathouse.service;
 
 import kz.devhils.meathouse.model.entities.Animal;
 import kz.devhils.meathouse.model.entities.AnimalProfile;
-import kz.devhils.meathouse.model.entities.Statuses;
+import kz.devhils.meathouse.model.entities.Status;
 
 import java.util.List;
 
@@ -33,7 +33,7 @@ public interface AnimalService {
 
     AnimalProfile updateProfile(AnimalProfile animalProfile);
 
-    AnimalProfile updateStatus(AnimalProfile animalProfile, Statuses status);
+    AnimalProfile updateStatus(AnimalProfile animalProfile, Status status);
 
     void deleteByIdProfile(Long id);
 

@@ -1,7 +1,7 @@
 package kz.devhils.meathouse.shared.security.jwt;
 
-import kz.devhils.meathouse.model.entities.Roles;
-import kz.devhils.meathouse.model.entities.Users;
+import kz.devhils.meathouse.model.entities.Role;
+import kz.devhils.meathouse.model.entities.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
@@ -14,7 +14,7 @@ public class JwtUserFactory {
     public JwtUserFactory() {
     }
 
-    public static  JwtUser create(Users user){
+    public static  JwtUser create(User user){
         return new JwtUser(
                 user.getId(),
                 user.getFirstName(),
@@ -27,7 +27,7 @@ public class JwtUserFactory {
         );
     }
 
-    private static List<GrantedAuthority> mapToGrantedAuthorities(List<Roles> userRoles){
+    private static List<GrantedAuthority> mapToGrantedAuthorities(List<Role> userRoles){
         return userRoles.stream().map(roles -> new SimpleGrantedAuthority(roles.getName())
         ).collect(Collectors.toList());
     }

@@ -1,6 +1,6 @@
 package kz.devhils.meathouse.shared.security;
 
-import kz.devhils.meathouse.model.entities.Users;
+import kz.devhils.meathouse.model.entities.User;
 import kz.devhils.meathouse.shared.security.jwt.JwtUser;
 import kz.devhils.meathouse.shared.security.jwt.JwtUserFactory;
 import kz.devhils.meathouse.service.UserService;
@@ -23,7 +23,7 @@ public class JwtUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String telephone) throws UsernameNotFoundException {
-        Users user = userService.findByEmail(telephone);
+        User user = userService.findByEmail(telephone);
 
         if (user == null){
             throw  new UsernameNotFoundException("User with telephone: " + telephone + " not found");

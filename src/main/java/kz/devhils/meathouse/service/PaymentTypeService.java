@@ -1,7 +1,7 @@
 package kz.devhils.meathouse.service;
 
 import kz.devhils.meathouse.model.entities.PaymentType;
-import kz.devhils.meathouse.model.entities.Statuses;
+import kz.devhils.meathouse.model.entities.Status;
 
 import java.util.List;
 
@@ -13,5 +13,5 @@ public interface PaymentTypeService {
     PaymentType update(PaymentType paymentType);
     void delete(PaymentType paymentType);
     void deleteById(Long id);
-    PaymentType updateStatus(Long id, Statuses statuse);
+    PaymentType updateStatus(Long id, Status statuse);
 }

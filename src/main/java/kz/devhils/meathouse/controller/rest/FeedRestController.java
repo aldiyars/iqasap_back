@@ -1,9 +1,10 @@
 package kz.devhils.meathouse.controller.rest;
 
 import kz.devhils.meathouse.model.entities.Feed;
-import kz.devhils.meathouse.model.entities.Statuses;
+import kz.devhils.meathouse.model.entities.Status;
 import kz.devhils.meathouse.service.FeedService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,11 +12,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@AllArgsConstructor
 @RequestMapping(value = "api/v1/feed")
 public class FeedRestController {
 
-    private final FeedService feedService;
+    @Autowired
+    private FeedService feedService;
 
     @GetMapping("{id}")
     public ResponseEntity<?> findById(@PathVariable Long id){
@@ -35,6 +36,12 @@ public class FeedRestController {
         return new ResponseEntity<>(result, HttpStatus.CREATED);
     }
 
+    @DeleteMapping("{id}")
+    public ResponseEntity<?> delete(@PathVariable Long id){
+        feedService.deleteById(id);
+        return new ResponseEntity<>("Deleted article by ID: ", HttpStatus.OK);
+    }
+
     @PutMapping()
     public ResponseEntity<?> updateFeed(@RequestBody Feed feed){
         Feed result = feedService.update(feed);
@@ -42,7 +49,7 @@ public class FeedRestController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<?> updateStatus(@PathVariable Long id, @RequestBody Statuses status){
+    public ResponseEntity<?> updateStatus(@PathVariable Long id, @RequestBody Status status){
         Feed result = feedService.updateStatus(id, status);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }

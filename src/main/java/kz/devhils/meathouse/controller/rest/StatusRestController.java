@@ -1,45 +1,46 @@
 package kz.devhils.meathouse.controller.rest;
 
 
-import kz.devhils.meathouse.model.entities.Statuses;
+import kz.devhils.meathouse.model.entities.Status;
 import kz.devhils.meathouse.service.StatusService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@AllArgsConstructor
 @RestController
 @RequestMapping(value = "/api/v1/status")
 public class StatusRestController {
 
+    @Autowired
     private StatusService statusService;
 
     @GetMapping("{id}")
     public ResponseEntity<?> findById(@PathVariable Long id){
-        Statuses result = statusService.findById(id);
+        Status result = statusService.findById(id);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     @GetMapping()
     public ResponseEntity<?> getAll(){
-        List<Statuses> result = statusService.getAll();
+        List<Status> result = statusService.getAll();
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     @PostMapping("{status}")
     public ResponseEntity<?> addStatus(@PathVariable String status){
-        Statuses statuses = new Statuses();
+        Status statuses = new Status();
         statuses.setName(status);
-        Statuses result = statusService.addStatus(statuses);
+        Status result = statusService.addStatus(statuses);
         return new ResponseEntity<>(result, HttpStatus.CREATED);
     }
 
     @PutMapping()
-    public ResponseEntity<?> updateStatus(@RequestBody Statuses status){
-        Statuses result = statusService.update(status);
+    public ResponseEntity<?> updateStatus(@RequestBody Status status){
+        Status result = statusService.update(status);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
@@ -50,7 +51,7 @@ public class StatusRestController {
     }
 
     @DeleteMapping()
-    public ResponseEntity<?> deleteStatus(@RequestBody Statuses status){
+    public ResponseEntity<?> deleteStatus(@RequestBody Status status){
         statusService.delete(status);
         return new ResponseEntity<>("Deleted Status: {}", HttpStatus.OK);
     }

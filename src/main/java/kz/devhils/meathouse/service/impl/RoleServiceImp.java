@@ -1,39 +1,40 @@
 package kz.devhils.meathouse.service.impl;
 
-import kz.devhils.meathouse.model.entities.Roles;
+import kz.devhils.meathouse.model.entities.Role;
 import kz.devhils.meathouse.repositories.RoleRepo;
 import kz.devhils.meathouse.service.RoleService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@AllArgsConstructor
 public class RoleServiceImp implements RoleService {
 
+    @Autowired
     private RoleRepo roleRepo;
 
     @Override
-    public Roles findById(Long id) {
-        Roles result = roleRepo.findById(id).orElse(null);
+    public Role findById(Long id) {
+        Role result = roleRepo.findById(id).orElse(null);
         return result;
     }
 
     @Override
-    public List<Roles> getAll() {
-        List<Roles> result = roleRepo.findAll();
+    public List<Role> getAll() {
+        List<Role> result = roleRepo.findAll();
         return result;
     }
 
     @Override
-    public Roles save(Roles role) {
-        Roles result = roleRepo.save(role);
+    public Role save(Role role) {
+        Role result = roleRepo.save(role);
         return result;
     }
 
     @Override
-    public Roles updateRole(Roles role) {
+    public Role updateRole(Role role) {
         if (role.getId() != null && findById(role.getId()) != null){
             roleRepo.save(role);
         }
@@ -41,7 +42,7 @@ public class RoleServiceImp implements RoleService {
     }
 
     @Override
-    public void delete(Roles role) {
+    public void delete(Role role) {
         roleRepo.delete(role);
     }
 

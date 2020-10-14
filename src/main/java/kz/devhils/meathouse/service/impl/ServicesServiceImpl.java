@@ -1,39 +1,38 @@
 package kz.devhils.meathouse.service.impl;
 
-import kz.devhils.meathouse.model.entities.Services;
+import kz.devhils.meathouse.model.entities.Service;
 import kz.devhils.meathouse.repositories.ServicesRepo;
 import kz.devhils.meathouse.service.ServicesService;
-import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-@Service
-@AllArgsConstructor
+@org.springframework.stereotype.Service
 public class ServicesServiceImpl implements ServicesService {
 
+    @Autowired
     private ServicesRepo servicesRepo;
 
     @Override
-    public Services findById(Long id) {
-        Services result = servicesRepo.findById(id).orElse(null);
+    public Service findById(Long id) {
+        Service result = servicesRepo.findById(id).orElse(null);
         return result;
     }
 
     @Override
-    public List<Services> getAll() {
-        List<Services> result = servicesRepo.findAll();
+    public List<Service> getAll() {
+        List<Service> result = servicesRepo.findAll();
         return result;
     }
 
     @Override
-    public Services save(Services service) {
-        Services result = servicesRepo.save(service);
+    public Service save(Service service) {
+        Service result = servicesRepo.save(service);
         return result;
     }
 
     @Override
-    public Services update(Services service) {
+    public Service update(Service service) {
         if (service.getId() != null && findById(service.getId()) != null){
             servicesRepo.save(service);
         }
@@ -41,7 +40,7 @@ public class ServicesServiceImpl implements ServicesService {
     }
 
     @Override
-    public void delete(Services service) {
+    public void delete(Service service) {
         servicesRepo.delete(service);
     }
 

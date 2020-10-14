@@ -8,13 +8,12 @@ import org.springframework.data.annotation.CreatedDate;
 import javax.persistence.*;
 import java.util.Date;
 
-
-@Entity
-@Table(name = "roles")
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
-public class Roles{
+@Table(name = "t_service")
+@Entity
+public class Service {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,5 +32,14 @@ public class Roles{
     public void prePersist(){
         this.createdAt = new Date();
     }
-}
 
+//    active
+//    inactive
+//    in_process
+//    pending
+//    delivery
+//    done
+//    in_sale
+//    sold
+
+}

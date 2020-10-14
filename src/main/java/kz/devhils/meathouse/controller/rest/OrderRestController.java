@@ -1,9 +1,12 @@
 package kz.devhils.meathouse.controller.rest;
 
+import kz.devhils.meathouse.model.dtos.request.CreateOrderReq;
 import kz.devhils.meathouse.model.entities.Order;
-import kz.devhils.meathouse.model.entities.Statuses;
+import kz.devhils.meathouse.model.entities.Status;
+import kz.devhils.meathouse.model.mappers.OrderMapper;
 import kz.devhils.meathouse.service.OrderService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,10 +15,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/v1/order")
-@AllArgsConstructor
-public class OrderResController {
+public class OrderRestController {
 
+    @Autowired
     private OrderService orderService;
+    @Autowired
+    private OrderMapper orderMapper;
 
     @GetMapping()
     public ResponseEntity<?> getAllOrder(){
@@ -30,8 +35,8 @@ public class OrderResController {
     }
 
     @PostMapping()
-    public ResponseEntity<?> addOrder(@RequestBody Order order){
-        Order result = orderService.saveOrder(order);
+    public ResponseEntity<?> addOrder(@RequestBody CreateOrderReq order){
+        Order result = orderService.saveOrder(orderMapper.toEntity(order));
         return new ResponseEntity<>(result, HttpStatus.CREATED);
     }
 
@@ -42,7 +47,7 @@ public class OrderResController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<?> updateStatus(@PathVariable Long id, @RequestBody Statuses status){
+    public ResponseEntity<?> updateStatus(@PathVariable Long id, @RequestBody Status status){
         Order result = orderService.updateStatusById(id, status);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }

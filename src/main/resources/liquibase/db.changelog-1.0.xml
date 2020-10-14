@@ -3,7 +3,7 @@
 <!--                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-->
 <!--                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">-->
 <!--&lt;!&ndash;    <changeSet id="1.0.0" author="aldiyar">&ndash;&gt;-->
-<!--&lt;!&ndash;        <createTable tableName="users">&ndash;&gt;-->
+<!--&lt;!&ndash;        <createTable tableName="user">&ndash;&gt;-->
 <!--&lt;!&ndash;            <column name="id" type="BIGINT" autoIncrement="true">&ndash;&gt;-->
 <!--&lt;!&ndash;                <constraints primaryKey="true" nullable="false"/>&ndash;&gt;-->
 <!--&lt;!&ndash;            </column>&ndash;&gt;-->

@@ -1,19 +1,20 @@
 package kz.devhils.meathouse.service.impl;
 
 import kz.devhils.meathouse.model.entities.Feed;
-import kz.devhils.meathouse.model.entities.Statuses;
+import kz.devhils.meathouse.model.entities.Status;
 import kz.devhils.meathouse.repositories.FeedRepo;
 import kz.devhils.meathouse.service.FeedService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@AllArgsConstructor
 public class FeedServiceImpl implements FeedService {
 
-    private final FeedRepo feedRepo;
+    @Autowired
+    private FeedRepo feedRepo;
 
 
     @Override
@@ -53,7 +54,7 @@ public class FeedServiceImpl implements FeedService {
     }
 
     @Override
-    public Feed updateStatus(Long id, Statuses status) {
+    public Feed updateStatus(Long id, Status status) {
         Feed result = findById(id);
         result.setStatus(status);
         if(result != null){

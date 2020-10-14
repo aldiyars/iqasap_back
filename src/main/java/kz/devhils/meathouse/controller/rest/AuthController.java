@@ -1,9 +1,10 @@
 package kz.devhils.meathouse.controller.rest;
 
 import kz.devhils.meathouse.model.dtos.AuthenticationRequestDto;
-import kz.devhils.meathouse.model.entities.Users;
+import kz.devhils.meathouse.model.entities.User;
 import kz.devhils.meathouse.shared.security.jwt.JwtTokenProvider;
 import kz.devhils.meathouse.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -22,9 +23,12 @@ import java.util.Map;
 @RequestMapping(value = "/api/v1/auth/")
 public class AuthController {
 
-    private final AuthenticationManager authenticationManager;
-    private final JwtTokenProvider jwtTokenProvider;
-    private final UserService userService;
+    @Autowired
+    private AuthenticationManager authenticationManager;
+    @Autowired
+    private JwtTokenProvider jwtTokenProvider;
+    @Autowired
+    private UserService userService;
 
     public AuthController(AuthenticationManager authenticationManager, JwtTokenProvider jwtTokenProvider, UserService userService) {
         this.authenticationManager = authenticationManager;
@@ -37,7 +41,7 @@ public class AuthController {
         try {
             String tel = requestDto.getTel().toString();
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(tel, requestDto.getPassword()));
-            Users user = userService.findByEmail(tel);
+            User user = userService.findByEmail(tel);
 
             if (user == null){
                 throw new UsernameNotFoundException("User with tel: " + tel + " not found");
@@ -52,7 +56,7 @@ public class AuthController {
             return ResponseEntity.ok(response);
 
         }catch (AuthenticationException e){
-            throw new BadCredentialsException("Invalid email or password");
+            throw new BadCredentialsException("Invalid phone or password");
         }
     }
 }

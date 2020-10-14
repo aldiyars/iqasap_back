@@ -7,26 +7,39 @@ import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
-@Table(name = "animal_service")
-@Data
+@Table(name = "t_user")
 @AllArgsConstructor
 @NoArgsConstructor
-public class AnimalServices {
+@Data
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    private Animal animalType;
+    @Column(name = "first_name")
+    private String firstName;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    private Services service;
+    @Column(name = "last_name")
+    private String lastName;
 
-    @Column(name = "cost")
-    private Double cost;
+    @Column(name = "email", unique = true)
+    private String email;
+
+    @Column(name = "tel", unique = true)
+    private Long tel;
+
+    @Column(name = "password")
+    private String password;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<Role> roles;
+
+    @OneToOne(fetch = FetchType.EAGER)
+    private UserProfile userProfile;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at", nullable = false, updatable = false)

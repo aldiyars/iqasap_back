@@ -9,7 +9,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "order_delivery")
+@Table(name = "t_order_delivery")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -21,13 +21,10 @@ public class OrderDelivery {
     private Long id;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    private Users deliver;
+    private User deliver;
 
     @ManyToOne(fetch = FetchType.EAGER)
     private Order order;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    private PaymentType paymentType;
 
     @Column(name = "start_date")
     private Date startDate;
@@ -35,8 +32,7 @@ public class OrderDelivery {
     @Column(name = "finish_date")
     private Date finishDate;
 
-    @Column(name = "status")
-    private String status;
-
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Status status;
 
 }

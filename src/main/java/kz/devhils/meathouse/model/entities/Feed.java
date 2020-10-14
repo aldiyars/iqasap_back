@@ -9,7 +9,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "feed")
+@Table(name = "t_feed")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -26,7 +26,7 @@ public class Feed {
     private String description;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    private Users author;
+    private User author;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at", nullable = false, updatable = false)
@@ -39,7 +39,7 @@ public class Feed {
     }
 
     @ManyToOne(fetch = FetchType.EAGER)
-    private Statuses status;
+    private Status status;
 
 
 }

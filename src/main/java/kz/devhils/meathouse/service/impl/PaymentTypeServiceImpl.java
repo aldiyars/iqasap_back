@@ -1,19 +1,23 @@
 package kz.devhils.meathouse.service.impl;
 
 import kz.devhils.meathouse.model.entities.PaymentType;
-import kz.devhils.meathouse.model.entities.Statuses;
+import kz.devhils.meathouse.model.entities.Status;
 import kz.devhils.meathouse.repositories.PaymentTypeRepo;
 import kz.devhils.meathouse.service.PaymentTypeService;
+import kz.devhils.meathouse.service.StatusService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@AllArgsConstructor
 public class PaymentTypeServiceImpl implements PaymentTypeService {
 
+    @Autowired
     private PaymentTypeRepo paymentTypeRepo;
+    @Autowired
+    private StatusService statusService;
 
     @Override
     public PaymentType findById(Long id) {
@@ -29,6 +33,8 @@ public class PaymentTypeServiceImpl implements PaymentTypeService {
 
     @Override
     public PaymentType save(PaymentType paymentType) {
+        Status status = statusService.findByName("active");
+        paymentType.setStatus(status);
         PaymentType result = paymentTypeRepo.save(paymentType);
         return result;
     }
@@ -52,7 +58,7 @@ public class PaymentTypeServiceImpl implements PaymentTypeService {
     }
 
     @Override
-    public PaymentType updateStatus(Long id, Statuses status) {
+    public PaymentType updateStatus(Long id, Status status) {
         PaymentType result = findById(id);
         result.setStatus(status);
         paymentTypeRepo.save(result);

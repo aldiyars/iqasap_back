@@ -2,25 +2,28 @@ package kz.devhils.meathouse.service.impl;
 
 import kz.devhils.meathouse.model.entities.Animal;
 import kz.devhils.meathouse.model.entities.AnimalProfile;
-import kz.devhils.meathouse.model.entities.Statuses;
+import kz.devhils.meathouse.model.entities.Status;
 import kz.devhils.meathouse.repositories.AnimalProfileRepo;
 import kz.devhils.meathouse.repositories.AnimalRepo;
 import kz.devhils.meathouse.repositories.StatusRepo;
 import kz.devhils.meathouse.service.AnimalService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 @Slf4j
-@AllArgsConstructor
 public class AnimalServiceImpl implements AnimalService {
 
-    private final AnimalRepo animalRepo;
-    private final AnimalProfileRepo animalProfileRepo;
-    private final StatusRepo statusRepo;
+    @Autowired
+    private AnimalRepo animalRepo;
+    @Autowired
+    private AnimalProfileRepo animalProfileRepo;
+    @Autowired
+    private StatusRepo statusRepo;
 
     @Override
     public Animal saveAnimal(Animal animal) {
@@ -44,7 +47,7 @@ public class AnimalServiceImpl implements AnimalService {
     @Override
     public Animal updateAnimal(Animal animal) {
         if(animal.getId() != null && animalRepo.getOne(animal.getId()) != null){
-            animalRepo.save(animal);
+            animal = animalRepo.save(animal);
         }
         return animal;
     }
@@ -73,8 +76,8 @@ public class AnimalServiceImpl implements AnimalService {
 
     @Override
     public AnimalProfile saveProfile(AnimalProfile animalProfile) {
-        Statuses statuses = statusRepo.findByName("active");
-        animalProfile.setStatuses(statuses);
+        Status status = statusRepo.findByName("active");
+        animalProfile.setStatus(status);
         AnimalProfile result = animalProfileRepo.save(animalProfile);
         return result;
     }
@@ -93,9 +96,9 @@ public class AnimalServiceImpl implements AnimalService {
     }
 
     @Override
-    public AnimalProfile updateStatus(AnimalProfile animalProfile, Statuses status) {
+    public AnimalProfile updateStatus(AnimalProfile animalProfile, Status status) {
         AnimalProfile result = animalProfileRepo.getOne(animalProfile.getId());
-        result.setStatuses(status);
+        result.setStatus(status);
         animalProfileRepo.save(result);
         return result;
     }

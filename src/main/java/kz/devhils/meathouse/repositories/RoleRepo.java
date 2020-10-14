@@ -1,8 +1,8 @@
 package kz.devhils.meathouse.repositories;
 
-import kz.devhils.meathouse.model.entities.Roles;
+import kz.devhils.meathouse.model.entities.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface RoleRepo extends JpaRepository<Roles, Long>{
-    Roles findByName(String name);
+public interface RoleRepo extends JpaRepository<Role, Long>{
+    Role findByName(String name);
 }

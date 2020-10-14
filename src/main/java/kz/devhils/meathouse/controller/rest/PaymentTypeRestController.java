@@ -1,20 +1,21 @@
 package kz.devhils.meathouse.controller.rest;
 
 import kz.devhils.meathouse.model.entities.PaymentType;
-import kz.devhils.meathouse.model.entities.Statuses;
+import kz.devhils.meathouse.model.entities.Status;
 import kz.devhils.meathouse.service.PaymentTypeService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@AllArgsConstructor
 @RestController
 @RequestMapping(value = "api/v1/payment")
 public class PaymentTypeRestController {
 
+    @Autowired
     private PaymentTypeService paymentTypeService;
 
     @GetMapping("{id}")
@@ -42,7 +43,7 @@ public class PaymentTypeRestController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<?> updateStatus(@PathVariable Long id, @RequestBody Statuses status){
+    public ResponseEntity<?> updateStatus(@PathVariable Long id, @RequestBody Status status){
         PaymentType result = paymentTypeService.updateStatus(id, status);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }

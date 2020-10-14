@@ -7,9 +7,10 @@ import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
-@Table(name = "t_order")
+@Table(name = "t_orders")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -20,10 +21,10 @@ public class Order {
     private Long id;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    private Users client;
+    private User client;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    private Users moderator;
+    private User moderator;
 
     @ManyToOne(fetch = FetchType.EAGER)
     private PaymentType paymentType;
@@ -32,10 +33,13 @@ public class Order {
     private int isPayed;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    private Statuses status;
+    private Status status;
+
+    @OneToMany(fetch = FetchType.EAGER)
+    private Set<OrderAnimal> orderAnimals;
 
     @Column(name = "total")
-    private int total;
+    private double total;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at", nullable = false, updatable = false)
