@@ -41,7 +41,7 @@ public class AnimalProfile{
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Photo> photos;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY)
     private List<AnimalService> animalServices;
 
     @Column(name = "cost")

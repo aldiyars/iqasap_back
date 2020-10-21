@@ -5,6 +5,8 @@ import kz.devhils.meathouse.module.file.exceptions.MyFileNotFoundException;
 import org.springframework.core.io.Resource;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 public interface PhotoService {
 
     String storeFile(MultipartFile file);
@@ -13,4 +15,5 @@ public interface PhotoService {
     boolean delete(Photo photo);
     Photo getFileByFileName(String fileName) throws MyFileNotFoundException;
     Photo findById(Long id);
+    List<Photo> getAll();
 }

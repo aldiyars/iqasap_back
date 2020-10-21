@@ -13,5 +13,5 @@ public interface FeedService {
     Feed update(Feed feed);
     void deleteById(Long id);
     void delete(Feed feed);
-    Feed updateStatus(Long id, Status status);
+    Feed updateStatus(Long id, Long statusId);
 }

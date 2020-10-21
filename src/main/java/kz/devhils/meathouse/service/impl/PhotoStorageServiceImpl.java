@@ -22,12 +22,15 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.List;
 
 @Service
 public class PhotoStorageServiceImpl implements PhotoService {
 
+
     private final Path fileStorageLocation;
-    private final PhotoRepo photoRepo;
+    @Autowired
+    private PhotoRepo photoRepo;
 
     @Autowired
     public PhotoStorageServiceImpl(FileStorageProperties fileStorageProperties,
@@ -99,5 +102,12 @@ public class PhotoStorageServiceImpl implements PhotoService {
     public Photo findById(Long id) {
         return photoRepo.getOne(id);
     }
+
+    @Override
+    public List<Photo> getAll() {
+        List<Photo> photos = photoRepo.findAll();
+        return photos;
+    }
+
 
 }

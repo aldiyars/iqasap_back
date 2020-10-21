@@ -1,5 +1,6 @@
 package kz.devhils.meathouse.controller.rest;
 
+import io.swagger.annotations.ApiOperation;
 import kz.devhils.meathouse.model.dtos.AuthenticationRequestDto;
 import kz.devhils.meathouse.model.entities.User;
 import kz.devhils.meathouse.shared.security.jwt.JwtTokenProvider;
@@ -21,7 +22,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/api/v1/auth/")
-public class AuthController {
+public class LoginController {
 
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -30,18 +31,14 @@ public class AuthController {
     @Autowired
     private UserService userService;
 
-    public AuthController(AuthenticationManager authenticationManager, JwtTokenProvider jwtTokenProvider, UserService userService) {
-        this.authenticationManager = authenticationManager;
-        this.jwtTokenProvider = jwtTokenProvider;
-        this.userService = userService;
-    }
 
     @PostMapping("login")
+    @ApiOperation("Вход в систему по номеру телефона")
     public ResponseEntity login(@RequestBody AuthenticationRequestDto requestDto){
         try {
             String tel = requestDto.getTel().toString();
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(tel, requestDto.getPassword()));
-            User user = userService.findByEmail(tel);
+            User user = userService.findByTel(Long.parseLong(tel));
 
             if (user == null){
                 throw new UsernameNotFoundException("User with tel: " + tel + " not found");

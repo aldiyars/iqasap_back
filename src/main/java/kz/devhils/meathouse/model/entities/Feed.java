@@ -28,6 +28,9 @@ public class Feed {
     @ManyToOne(fetch = FetchType.EAGER)
     private User author;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Photo photo;
+
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at", nullable = false, updatable = false)
     @CreatedDate

@@ -7,7 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CreateAnimalService {
+public class AnimalServiceRequest {
+    private Long id;
     private Long animalId;
     private Long serviceId;
     private double cost;

@@ -4,6 +4,7 @@ import kz.devhils.meathouse.model.entities.Feed;
 import kz.devhils.meathouse.model.entities.Status;
 import kz.devhils.meathouse.repositories.FeedRepo;
 import kz.devhils.meathouse.service.FeedService;
+import kz.devhils.meathouse.service.StatusService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,8 @@ public class FeedServiceImpl implements FeedService {
 
     @Autowired
     private FeedRepo feedRepo;
+    @Autowired
+    private StatusService statusService;
 
 
     @Override
@@ -31,6 +34,8 @@ public class FeedServiceImpl implements FeedService {
 
     @Override
     public Feed save(Feed feed) {
+        Status status = statusService.findByName("active");
+        feed.setStatus(status);
         Feed result = feedRepo.save(feed);
         return result;
     }
@@ -54,12 +59,11 @@ public class FeedServiceImpl implements FeedService {
     }
 
     @Override
-    public Feed updateStatus(Long id, Status status) {
+    public Feed updateStatus(Long id, Long statusId) {
         Feed result = findById(id);
+        Status status = statusService.findById(statusId);
         result.setStatus(status);
-        if(result != null){
-            feedRepo.save(result);
-        }
+        feedRepo.save(result);
         return result;
     }
 }
