@@ -49,13 +49,14 @@ public class FeedMapperImpl implements FeedMapper {
 
     @Override
     public FeedResponse toDto(Feed feed) {
+        String authorFullName = feed.getAuthor().getFirstName() + " " + feed.getAuthor().getLastName();
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm");
         String createdAt = dateFormat.format(feed.getCreatedAt());
         FeedResponse feedResponse = new FeedResponse();
         feedResponse.setId(feed.getId());
         feedResponse.setTitle(feed.getTitle());
         feedResponse.setDescription(feed.getDescription());
-        feedResponse.setAuthorId(feed.getAuthor().getId());
+        feedResponse.setAuthorFullName(authorFullName);
         feedResponse.setCreatedAt(createdAt);
         feedResponse.setPhotoUrl(feed.getPhoto().getFileUrl());
         return feedResponse;

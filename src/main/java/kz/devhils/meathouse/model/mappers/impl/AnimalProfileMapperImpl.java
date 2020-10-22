@@ -68,6 +68,7 @@ public class AnimalProfileMapperImpl implements AnimalProfileMapper {
             AnimalServiceResponse animalServiceResponse = new AnimalServiceResponse();
             animalServiceResponse.setId(animalProfile.getAnimalServices().get(i).getId());
             animalServiceResponse.setServiceName(animalProfile.getAnimalServices().get(i).getService().getName());
+            animalServiceResponse.setAnimalName(animalProfile.getAnimalServices().get(i).getAnimal().getName());
             animalServiceResponse.setCost(animalProfile.getAnimalServices().get(i).getCost());
 
             animalServiceResponseList.add(animalServiceResponse);

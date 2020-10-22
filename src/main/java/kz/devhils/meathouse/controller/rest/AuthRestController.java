@@ -1,11 +1,17 @@
 package kz.devhils.meathouse.controller.rest;
 
+
 import io.swagger.annotations.ApiOperation;
+import kz.devhils.meathouse.model.dtos.AuthMobileDto;
 import kz.devhils.meathouse.model.dtos.AuthenticationRequestDto;
 import kz.devhils.meathouse.model.entities.User;
-import kz.devhils.meathouse.shared.security.jwt.JwtTokenProvider;
+import kz.devhils.meathouse.model.entities.UserProfile;
+import kz.devhils.meathouse.model.mappers.UserMapper;
 import kz.devhils.meathouse.service.UserService;
+import kz.devhils.meathouse.shared.security.jwt.JwtTokenProvider;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -22,15 +28,16 @@ import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/api/v1/auth/")
-public class LoginController {
+public class AuthRestController {
 
+    @Autowired
+    private UserService userService;
+    @Autowired
+    private UserMapper userMapper;
     @Autowired
     private AuthenticationManager authenticationManager;
     @Autowired
     private JwtTokenProvider jwtTokenProvider;
-    @Autowired
-    private UserService userService;
-
 
     @PostMapping("login")
     @ApiOperation("Вход в систему по номеру телефона")
@@ -55,5 +62,22 @@ public class LoginController {
         }catch (AuthenticationException e){
             throw new BadCredentialsException("Invalid phone or password");
         }
+    }
+
+    @PostMapping(value = "register")
+    @ApiOperation("Регистрация по номеру телефона")
+    public ResponseEntity<?> createUser(@RequestBody AuthMobileDto authMobileDto){
+        if (userService.findByTel(authMobileDto.getTel().toString()) != null){
+            return new ResponseEntity<>("Мұндай телефон базада бар!", HttpStatus.BAD_REQUEST);
+        }
+
+        UserProfile userProfile = new UserProfile();
+        UserProfile profile = userService.registerProfile(userProfile);
+        User user = new User();
+        user.setTel(authMobileDto.getTel());
+        user.setPassword(authMobileDto.getPassword());
+        user.setUserProfile(profile);
+        User result = userService.authMobile(user);
+        return new ResponseEntity<>(userMapper.toDto(result), HttpStatus.CREATED);
     }
 }

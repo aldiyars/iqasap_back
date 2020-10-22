@@ -70,7 +70,7 @@ public class UserServiceImpl  implements UserService {
     @Override
     public User findByTel(String tel) {
         User result = userRepo.findByTel(Long.parseLong(tel));
-        log.info("IN findByEmail - {} user found by phone: {}", result, tel);
+        log.info("IN findByPhone - {} user found by phone: {}", result, tel);
 
         return userRepo.findByTel(Long.parseLong(tel));
     }

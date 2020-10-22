@@ -14,7 +14,7 @@ public class FeedResponse {
     private Long id;
     private String title;
     private String description;
-    private Long authorId;
+    private String authorFullName;
     private String createdAt;
     private String photoUrl;
 }
