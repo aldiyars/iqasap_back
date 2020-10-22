@@ -62,14 +62,14 @@ public class PhotoRestController {
         return fileResource;
     }
 
-    @PostMapping("/uploadMultipleFiles")
-    @ApiOperation("Залить все файлы")
-    public List<Photo> uploadMultipleFiles(@RequestParam("files") MultipartFile[] files) {
-        return Arrays.asList(files)
-                .stream()
-                .map(file -> uploadFile(file))
-                .collect(Collectors.toList());
-    }
+//    @PostMapping("/uploadMultipleFiles")
+//    @ApiOperation("Залить все файлы")
+//    public List<Photo> uploadMultipleFiles(@RequestParam("files") MultipartFile[] files) {
+//        return Arrays.asList(files)
+//                .stream()
+//                .map(file -> uploadFile(file))
+//                .collect(Collectors.toList());
+//    }
 
     @PostMapping("/uploadPhoto")
     @ApiOperation("Залить файл")

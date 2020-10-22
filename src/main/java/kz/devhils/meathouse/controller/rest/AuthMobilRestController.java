@@ -25,7 +25,7 @@ public class AuthMobilRestController {
     @PostMapping(value = "register")
     @ApiOperation("Регистрация по номеру телефона")
     public ResponseEntity<?> createUser(@RequestBody AuthMobileDto authMobileDto){
-        if (userService.findByTel(authMobileDto.getTel()) != null){
+        if (userService.findByTel(authMobileDto.getTel().toString()) != null){
             return new ResponseEntity<>("Мұндай телефон базада бар!", HttpStatus.BAD_REQUEST);
         }
 

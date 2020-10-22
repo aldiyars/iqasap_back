@@ -17,5 +17,5 @@ public interface UserService {
     UserProfile registerProfile(UserProfile userProfile);
     void deleteUserProfile(Long id);
     User authMobile(User user);
-    User findByTel(Long tel);
+    User findByTel(String tel);
 }

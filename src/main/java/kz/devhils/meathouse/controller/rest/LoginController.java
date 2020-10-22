@@ -38,7 +38,7 @@ public class LoginController {
         try {
             String tel = requestDto.getTel().toString();
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(tel, requestDto.getPassword()));
-            User user = userService.findByTel(Long.parseLong(tel));
+            User user = userService.findByTel(tel);
 
             if (user == null){
                 throw new UsernameNotFoundException("User with tel: " + tel + " not found");

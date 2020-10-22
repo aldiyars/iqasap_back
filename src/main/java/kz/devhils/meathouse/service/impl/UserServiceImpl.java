@@ -68,11 +68,11 @@ public class UserServiceImpl  implements UserService {
     }
 
     @Override
-    public User findByTel(Long tel) {
-        User result = userRepo.findByTel(tel);
+    public User findByTel(String tel) {
+        User result = userRepo.findByTel(Long.parseLong(tel));
         log.info("IN findByEmail - {} user found by phone: {}", result, tel);
 
-        return userRepo.findByTel(tel);
+        return userRepo.findByTel(Long.parseLong(tel));
     }
 
     @Override

@@ -123,7 +123,7 @@ public class AdminRestController {
     @ApiOperation("Создание User")
     public ResponseEntity<?> createUser(@RequestBody CreateUserDto user){
 
-        User checkUser = userService.findByTel(user.getTel());
+        User checkUser = userService.findByTel(user.getTel().toString());
         if(checkUser != null){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
@@ -152,7 +152,7 @@ public class AdminRestController {
     @GetMapping("tel/{tel}")
     @ApiOperation("Получение User по номеру телефона")
     public ResponseEntity<?> getByTel (@PathVariable(name = "tel") Long tel){
-        User user = userService.findByTel(tel);
+        User user = userService.findByTel(tel.toString());
         return new ResponseEntity<>(userMapper.toDto(user), HttpStatus.OK);
     }
 
