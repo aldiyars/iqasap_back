@@ -10,7 +10,7 @@ import java.util.List;
 @AllArgsConstructor
 @Data
 @NoArgsConstructor
-public class CreateOrderReq {
+public class CreateOrderRequest {
 
     private Long clientId;
     private int isPayed;
