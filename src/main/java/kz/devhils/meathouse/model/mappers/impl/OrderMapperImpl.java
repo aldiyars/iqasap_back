@@ -116,7 +116,7 @@ public class OrderMapperImpl implements OrderMapper {
 
             animalProfileResponse.setAnimalServiceResponses(animalServiceResponse);
             animalProfileResponse.setCost(animalProfile.getCost());
-
+//
             List<AnimalServiceResponse> animalServiceResponses = new ArrayList<>();
             if (orderAnimal.getAnimalServices() != null) {
                 if (orderAnimal.getAnimalServices().size() > 0) {
