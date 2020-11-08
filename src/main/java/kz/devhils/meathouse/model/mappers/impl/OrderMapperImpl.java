@@ -87,7 +87,7 @@ public class OrderMapperImpl implements OrderMapper {
         clientResponse.setTel(order.getClient().getTel());
         clientResponse.setAddress(order.getClient().getUserProfile().getAddress());
 
-        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm");
+        DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy hh:mm");
         String createdAt = dateFormat.format(order.getCreatedAt());
 
         List<OrderAnimalResponse> orderAnimalResponses = new ArrayList<>();
@@ -118,14 +118,18 @@ public class OrderMapperImpl implements OrderMapper {
             animalProfileResponse.setCost(animalProfile.getCost());
 
             List<AnimalServiceResponse> animalServiceResponses = new ArrayList<>();
-            for (AnimalService animalService : orderAnimal.getAnimalServices()) {
-                AnimalServiceResponse as = new AnimalServiceResponse();
-                as.setId(animalService.getId());
-                as.setAnimalName(animalService.getAnimal().getName());
-                as.setServiceName(animalService.getService().getName());
-                as.setCost(animalService.getCost());
+            if (orderAnimal.getAnimalServices() != null) {
+                if (orderAnimal.getAnimalServices().size() > 0) {
+                    for (AnimalService animalService : orderAnimal.getAnimalServices()) {
+                        AnimalServiceResponse as = new AnimalServiceResponse();
+                        as.setId(animalService.getId());
+                        as.setAnimalName(animalService.getAnimal().getName());
+                        as.setServiceName(animalService.getService().getName());
+                        as.setCost(animalService.getCost());
 
-                animalServiceResponses.add(as);
+                        animalServiceResponses.add(as);
+                    }
+                }
             }
 
             orderAnimalResponse.setId(orderAnimal.getId());
