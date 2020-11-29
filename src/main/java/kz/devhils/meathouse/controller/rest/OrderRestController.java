@@ -48,11 +48,11 @@ public class OrderRestController {
         return new ResponseEntity<>(orderMapper.toDto(result), HttpStatus.OK);
     }
 
-    @PutMapping("{id}")
-    public ResponseEntity<?> updateStatus(@PathVariable Long id, @RequestBody Status status){
-        Order result = orderService.updateStatusById(id, status);
-        return new ResponseEntity<>(orderMapper.toDto(result), HttpStatus.OK);
-    }
+//    @PutMapping("{id}")
+//    public ResponseEntity<?> updateStatus(@PathVariable Long id, @RequestBody Status status){
+//        Order result = orderService.updateStatusById(id, status);
+//        return new ResponseEntity<>(orderMapper.toDto(result), HttpStatus.OK);
+//    }
 
     @DeleteMapping()
     public ResponseEntity<?> deleteOrder(@RequestBody Order order){
@@ -60,15 +60,22 @@ public class OrderRestController {
         return new ResponseEntity<>("Deleted Order",HttpStatus.OK);
     }
 
-    @DeleteMapping("id")
+    @DeleteMapping("{id}")
     public ResponseEntity<?> deleteOrderById(@PathVariable Long id){
         orderService.deleteOrderById(id);
-        return new ResponseEntity<>("Deleted Order By ID: {}", HttpStatus.OK);
+        return new ResponseEntity<>("Deleted Order By ID: " + id, HttpStatus.OK);
     }
 
     @GetMapping("user/{id}")
     public ResponseEntity<?> getByClientId(@PathVariable Long id) {
         List<Order> result = orderService.getByClientId(id);
         return  new ResponseEntity<>(orderMapper.toDtoList(result), HttpStatus.OK);
+    }
+
+    @PutMapping("{orderId}/{statusId}")
+    public ResponseEntity<?> updateStatus(@PathVariable Long orderId, @PathVariable Long statusId){
+        Order result = orderService.updateOrderStatus(orderId, statusId);
+        return new ResponseEntity<>(orderMapper.toDto(result), HttpStatus.OK);
+
     }
 }
