@@ -55,6 +55,10 @@ public class AnimalProfile{
     @CreatedDate
     private Date createdAt = new Date();
 
+//
+//    @Column(name = "deleted_at")
+//    private Date deleted_at;
+
     @PrePersist
     public void prePersist(){
         this.createdAt = new Date();
