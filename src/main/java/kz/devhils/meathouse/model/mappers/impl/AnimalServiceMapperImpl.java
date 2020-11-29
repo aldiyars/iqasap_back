@@ -39,6 +39,8 @@ public class AnimalServiceMapperImpl implements AnimalServiceMapper {
         animalServiceResponse.setCost(animalService.getCost());
         animalServiceResponse.setAnimalName(animalService.getAnimal().getName());
         animalServiceResponse.setServiceName(animalService.getService().getName());
+        animalServiceResponse.setAnimalId(animalService.getAnimal().getId());
+        animalServiceResponse.setServiceId(animalService.getService().getId());
 
         return animalServiceResponse;
     }

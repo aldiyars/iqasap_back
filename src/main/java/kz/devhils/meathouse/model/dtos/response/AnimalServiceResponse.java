@@ -12,4 +12,6 @@ public class AnimalServiceResponse {
     private String animalName;
     private String serviceName;
     private Double cost;
+    private Long  animalId;
+    private Long serviceId;
 }
