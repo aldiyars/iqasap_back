@@ -48,6 +48,15 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public Order updateOrderStatus(Long orderId, Long statusId) {
+        Order order = orderRepo.getOne(orderId);
+        Status status = statusRepo.getOne(statusId);
+        order.setStatus(status);
+        Order result = orderRepo.save(order);
+        return result;
+    }
+
+    @Override
     public void deleteOrder(Order order) {
         orderRepo.delete(order);
     }
