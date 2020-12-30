@@ -14,6 +14,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -23,6 +24,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "api/v1/feed")
+@CrossOrigin(origins = "http://localhost:3000")
 public class FeedRestController {
 
     @Autowired
@@ -61,6 +63,7 @@ public class FeedRestController {
 
     @GetMapping("{id}")
     @ApiOperation("Получение Feed по ID")
+    @PreAuthorize("")
     public ResponseEntity<?> findById(@PathVariable Long id){
         Feed result = feedService.findById(id);
         return new ResponseEntity<>(feedMapper.toDto(result), HttpStatus.OK);

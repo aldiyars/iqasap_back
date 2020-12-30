@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/api/v1/service")
+@CrossOrigin(origins = "http://localhost:3000")
 public class ServiceRestController {
 
     @Autowired

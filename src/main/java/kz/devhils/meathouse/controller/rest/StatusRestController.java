@@ -13,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/v1/status")
+@CrossOrigin(origins = "http://localhost:3000")
 public class StatusRestController {
 
     @Autowired
