@@ -5,7 +5,6 @@ import kz.devhils.meathouse.model.dtos.response.ServiceResponse;
 import kz.devhils.meathouse.model.entities.Service;
 import kz.devhils.meathouse.model.mappers.ServiceMapper;
 import kz.devhils.meathouse.service.ServicesService;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +15,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/api/v1/service")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://iqasap.taq.kz")
 public class ServiceRestController {
 
     @Autowired

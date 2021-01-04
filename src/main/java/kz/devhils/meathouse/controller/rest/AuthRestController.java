@@ -9,7 +9,6 @@ import kz.devhils.meathouse.model.entities.UserProfile;
 import kz.devhils.meathouse.model.mappers.UserMapper;
 import kz.devhils.meathouse.service.UserService;
 import kz.devhils.meathouse.shared.security.jwt.JwtTokenProvider;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +23,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://iqasap.taq.kz")
 @RequestMapping(value = "/api/v1/auth/")
 public class AuthRestController {
 

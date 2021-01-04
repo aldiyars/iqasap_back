@@ -2,7 +2,6 @@ package kz.devhils.meathouse.controller.rest;
 
 import kz.devhils.meathouse.model.entities.Role;
 import kz.devhils.meathouse.service.RoleService;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/v1/role")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://iqasap.taq.kz")
 public class RoleRestController {
 
     @Autowired

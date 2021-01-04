@@ -1,23 +1,19 @@
 package kz.devhils.meathouse.controller.rest;
 
 import kz.devhils.meathouse.model.dtos.request.CreateOrderRequest;
-import kz.devhils.meathouse.model.dtos.response.OrderResponse;
 import kz.devhils.meathouse.model.entities.Order;
-import kz.devhils.meathouse.model.entities.Status;
 import kz.devhils.meathouse.model.mappers.OrderMapper;
 import kz.devhils.meathouse.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/api/v1/order")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://iqasap.taq.kz")
 public class OrderRestController {
 
     @Autowired

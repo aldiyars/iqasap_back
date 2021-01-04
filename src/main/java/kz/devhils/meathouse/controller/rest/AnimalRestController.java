@@ -14,7 +14,6 @@ import kz.devhils.meathouse.model.mappers.AnimalMapper;
 import kz.devhils.meathouse.model.mappers.AnimalProfileMapper;
 import kz.devhils.meathouse.service.AnimalService;
 import kz.devhils.meathouse.service.PhotoService;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,7 +25,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://iqasap.taq.kz")
 @RequestMapping(value = "/api/v1/animals")
 public class AnimalRestController {
 

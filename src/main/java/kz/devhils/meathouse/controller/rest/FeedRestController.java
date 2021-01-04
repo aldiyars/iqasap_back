@@ -6,11 +6,9 @@ import kz.devhils.meathouse.model.dtos.request.FeedRequest;
 import kz.devhils.meathouse.model.dtos.response.FeedResponse;
 import kz.devhils.meathouse.model.entities.Feed;
 import kz.devhils.meathouse.model.entities.Photo;
-import kz.devhils.meathouse.model.entities.Status;
 import kz.devhils.meathouse.model.mappers.FeedMapper;
 import kz.devhils.meathouse.service.FeedService;
 import kz.devhils.meathouse.service.PhotoService;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +22,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "api/v1/feed")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://iqasap.taq.kz")
 public class FeedRestController {
 
     @Autowired

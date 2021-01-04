@@ -3,7 +3,6 @@ package kz.devhils.meathouse.controller.rest;
 import kz.devhils.meathouse.model.entities.PaymentType;
 import kz.devhils.meathouse.model.entities.Status;
 import kz.devhils.meathouse.service.PaymentTypeService;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "api/v1/payment")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://iqasap.taq.kz")
 public class PaymentTypeRestController {
 
     @Autowired
